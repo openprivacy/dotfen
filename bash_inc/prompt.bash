@@ -14,7 +14,7 @@ function prompt() {
 
   case $TERM in
     xterm*)
-      local TITLEBAR='\[\033]0;xterm \u@\h:\w\007\]'
+      local TITLEBAR='\[\033]0;[\u@\h] \w\007\]'
       ;;
     *)
       local TITLEBAR=''
