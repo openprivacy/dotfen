@@ -10,7 +10,16 @@ function prompt() {
   fi
 
   local prompt_char='» '
-#  [[ $(grep `pwd` ~/.drush/*aliases.drushrc.php) ]] && prompt_char='∞ '
+  #  [[ $(grep `pwd` ~/.drush/*aliases.drushrc.php) ]] && prompt_char='∞ '
+
+  case $TERM in
+    xterm*)
+      local TITLEBAR='\[\033]0;xterm \u@\h:\w\007\]'
+      ;;
+    *)
+      local TITLEBAR=''
+      ;;
+  esac
 
   if [ "$UID" = "0" ]; then
     local user_color=$bold_red
@@ -24,7 +33,7 @@ function prompt() {
     local user_ssh=''
   fi
 
-  PS1="\n$(scm_char) ${user_ssh}[$user_color\u$reset_color@$green\H$reset_color] $yellow\w${reset_color}$git_prompt\n$green$prompt_char$reset_color"
+  PS1="${TITLEBAR}\n$(scm_char) ${user_ssh}[$user_color\u$reset_color@$green\H$reset_color] $yellow\w${reset_color}$git_prompt\n$green$prompt_char$reset_color"
   PS2='> '
   PS4='+ '
 }
