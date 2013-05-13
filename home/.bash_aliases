@@ -15,17 +15,15 @@ alias ....="cd ../../.."
 alias d=dirs
 alias pd=pushd
 alias po=popd
+alias dl='cd ~/Downloads'
+alias wl='cd ~/workspace; ls'
 
 # Shortcuts
-alias dl='cd ~/Downloads'
-alias wl='cd ~/workspace; ls
 alias c=clear
-alias f=finger
 alias h='history'
 alias h10='history 10'
 alias j='jobs -l'
 alias m=less
-alias ns='nslookup -type=any'
 alias psg='/bin/ps auxww | grep'
 alias purge='/bin/rm -f \#*\# *~ .*~ *% .*% core'
 
@@ -33,4 +31,3 @@ alias purge='/bin/rm -f \#*\# *~ .*~ *% .*% core'
 alias av='git branch -av'
 alias suno='git status -s -uno'
 alias rv='git remote -v'
-

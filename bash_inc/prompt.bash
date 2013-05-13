@@ -13,19 +13,18 @@ function prompt() {
 #  [[ $(grep `pwd` ~/.drush/*aliases.drushrc.php) ]] && prompt_char='∞ '
 
   if [ "$UID" = "0" ]; then
-    local user_color=$red
+    local user_color=$bold_red
   else
-    local user_color=$green
+    local user_color=$bold_green
   fi
 
   if [ "$SSH_CLIENT" != "" ]; then
-    local user_ssh="${red}SSH$reset_color "
+    local user_ssh="${bold_red}SSH$reset_color "
   else
     local user_ssh=''
   fi
-    
 
-  PS1="\n$(scm_char) ${user_ssh}[$user_color\u$reset_color@$green\H$reset_color] $yellow\w${reset_color}$git_prompt\n$red$prompt_char$reset_color"
+  PS1="\n$(scm_char) ${user_ssh}[$user_color\u$reset_color@$bold_green\H$reset_color] $yellow\w${reset_color}$git_prompt\n$bold_red$prompt_char$reset_color"
   PS2='> '
   PS4='+ '
 }
