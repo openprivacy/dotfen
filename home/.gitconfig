@@ -1,0 +1,25 @@
+[user]
+	name = Fen Labalme
+	email = fen@openprivacy.org
+[core]
+	autocrlf = false
+[diff]
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+[giggle]
+	main-window-maximized = true
+	main-window-geometry = 0x0+0+0
+	history-view-vpane-position = 376
+	main-window-view = HistoryView
+	file-view-vpane-position = 326
+	file-view-hpane-position = 321
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	graphlog = log --oneline --graph --branches
+[push]
+	default = simple
