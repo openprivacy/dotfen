@@ -1,9 +1,8 @@
 [user]
-	name = Fen Labalme
+	name = openprivacy
 	email = fen@openprivacy.org
 [core]
 	autocrlf = false
-[diff]
 [color]
 	branch = auto
 	diff = auto
@@ -23,3 +22,9 @@
 	graphlog = log --oneline --graph --branches
 [push]
 	default = simple
+[credential]
+	helper = cache --timeout=3600
+[diff]
+	tool = meld
+[difftool]
+	prompt = false
