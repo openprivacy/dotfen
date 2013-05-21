@@ -33,9 +33,19 @@ function prompt() {
     local user_ssh=''
   fi
 
-  PS1="${TITLEBAR}\n$(scm_char) ${user_ssh}[$user_color\u$reset_color@$green\H$reset_color] $yellow\w${reset_color}$git_prompt\n$green$prompt_char$reset_color"
+  if [ "\$(type -t __drush_ps1)" ]; then
+    _DRUSH_PS1=$(__drush_ps1 "(%s) ")
+  else 
+    _DRUSH_PS1=''
+  fi
+
+  PS1="${TITLEBAR}\n$(scm_char) ${user_ssh}[$user_color\u$reset_color@$green\H$reset_color] $yellow\w${reset_color}$git_prompt\n$green${_DRUSH_PS1}$prompt_char$reset_color"
   PS2='> '
   PS4='+ '
+
+# if [ "\$(type -t __git_ps1)" ] && [ "\$(type -t __drush_ps1)" ]; then
+#   PS1='\u@\h \w$(__git_ps1 " (%s)")$(__drush_ps1 "[%s]")\$ '
+# fi
 }
 
 

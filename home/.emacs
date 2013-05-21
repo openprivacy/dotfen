@@ -74,15 +74,15 @@
 
 (if (boundp 'x-display-name)
   (progn
-    (set-face-background 'modeline "sandy brown")
-    (set-face-foreground 'modeline "black")
-    (set-background-color "wheat1")
+    ;; (set-face-background 'modeline "sandy brown")
+    ;; (set-face-foreground 'modeline "black")
+    ;; (set-background-color "wheat1")
 
-    (require 'highline)
-    (make-face 'my-highline-face)
-    (set-face-background 'my-highline-face "lemon chiffon")
-    (setq-default highline-face 'my-highline-face)
-    (global-highline-mode)
+    ;; (require 'highline)
+    ;; (make-face 'my-highline-face)
+    ;; (set-face-background 'my-highline-face "lemon chiffon")
+    ;; (setq-default highline-face 'my-highline-face)
+    ;; (global-highline-mode)
 
     (setq frame-title-format
           '((buffer-file-name "%f" (dired-directory dired-directory "%b")) " - "
@@ -103,4 +103,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Droid Sans Mono" :foundry "unknown" :slant normal :weight normal :height 98 :width normal)))))
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 98 :width normal)))))
