@@ -33,6 +33,7 @@ function prompt() {
     local user_ssh=''
   fi
 
+  # FIXME: root user complains that there is no such function __drush_ps1
   if [ "\$(type -t __drush_ps1)" ]; then
     _DRUSH_PS1=$(__drush_ps1 "(%s) ")
   else 
@@ -42,12 +43,7 @@ function prompt() {
   PS1="${TITLEBAR}\n$(scm_char) ${user_ssh}[$user_color\u$reset_color@$green\H$reset_color] $yellow\w${reset_color}$git_prompt\n$green${_DRUSH_PS1}$prompt_char$reset_color"
   PS2='> '
   PS4='+ '
-
-# if [ "\$(type -t __git_ps1)" ] && [ "\$(type -t __drush_ps1)" ]; then
-#   PS1='\u@\h \w$(__git_ps1 " (%s)")$(__drush_ps1 "[%s]")\$ '
-# fi
 }
-
 
 PROMPT_COMMAND=prompt
 
