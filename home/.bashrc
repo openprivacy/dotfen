@@ -8,6 +8,11 @@ case $- in
       *) return;;
 esac
 
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    export PATH="$HOME/bin:$PATH"
+fi
+
 export EDITOR=vi
 
 # don't put duplicate lines or lines starting with space in the history.
