@@ -115,7 +115,7 @@ if ! shopt -oq posix; then
 fi
 
 # Quick change dir to within this list.
-export CDPATH=$CDPATH:$HOME/workspace/:$HOME/workspace/civicrm:$HOME/Documents
+export CDPATH=$HOME/workspace/:$HOME/workspace/civicrm:$HOME/CivicActions:$HOME/Documents
 shopt -s autocd
 shopt -s cdspell
 
