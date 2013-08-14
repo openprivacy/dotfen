@@ -44,7 +44,7 @@ if (!function_exists("sbox_make_alias")) {
           'path-aliases' => array(
             '%dump-dir' => 'nobackup',
           ),
-          'root' => "$sitesdir/$site/docroot/sites/default",
+          'root' => "$sitesdir/$site/docroot",
           'uri' => "http://${site}.fen.net",
         );
         // echo "docroot aliases[$site]: "; print_r($aliases[$site]);
