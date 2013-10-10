@@ -20,6 +20,7 @@
 	ci = commit
 	st = status
 	graphlog = log --oneline --graph --branches
+        g = grep -n --color
 [push]
 	default = simple
 [credential]

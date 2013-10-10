@@ -26,3 +26,8 @@ $aliases['dscadev'] = array(
   'root'   => "/home/fen/workspace/dscadev/docroot",
   'uri'    => "http://dscadev.fen.net",
 );
+$aliases['gg'] = array(
+  'parent' => '@local.parent',
+  'root'   => "/home/fen/workspace/gg/docroot",
+  'uri'    => "http://gg.localhost",
+);

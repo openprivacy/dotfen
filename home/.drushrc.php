@@ -1,4 +1,12 @@
 <?php
+$options['shell-aliases']['h'] = 'help';
+$options['shell-aliases']['noncore'] = 'pm-list --no-core';
+$options['shell-aliases']['unsuck'] = 'pm-disable -y overlay,dashboard';
+$options['shell-aliases']['clone'] = 'dl --package-handler=git_drupalorg';
+
+# change to the admin_menu_toolbar
+$options['shell-aliases']['retool'] = '!drush pm-download admin_menu && drush pm-disable -y toolbar && drush pm-enable -y admin_menu_toolbar';
+
 // Help Drush find your Drupal root from your sandbox project directories.
 // I've started converting my sandbox directories to use the .fen.net extension
 // so that Chrome can properly address them.  But I have a mishmash of sandboxes
