@@ -9,12 +9,12 @@
 	interactive = auto
 	status = auto
 [giggle]
-	main-window-maximized = true
-	main-window-geometry = 0x0+0+0
-	history-view-vpane-position = 376
+	main-window-maximized = false
+	main-window-geometry = 1064x727+1689+178
+	history-view-vpane-position = 346
 	main-window-view = HistoryView
-	file-view-vpane-position = 326
-	file-view-hpane-position = 321
+	file-view-vpane-position = 466
+	file-view-hpane-position = 242
 [alias]
 	co = checkout
 	ci = commit
@@ -29,3 +29,9 @@
 	tool = meld
 [difftool]
 	prompt = false
+[branch]
+        autosetuprebase = always
+[branch "master"]
+        remote = origin
+        merge = refs/heads/master
+        rebase = true

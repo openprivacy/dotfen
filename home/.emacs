@@ -18,7 +18,7 @@
 (defvar bind-fens-keys t)               ; to get some extra key bindings
 (require 'fen)                          ; handy editor functions
 
-;(require 'php-mode)                    ; PHP mode
+;; (require 'php-mode)                  ; PHP mode
 (require 'drupal-mode)                  ; Drupal mode
 (require 'civicrm-mode
          "drupal-mode.elc")             ; CiviCRM mode
@@ -27,7 +27,6 @@
 (add-to-list 'auto-mode-alist '("\\.\\(module\\|test\\|install\\|theme\\|inc\\)$" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.info" . conf-windows-mode))
 
-(add-to-list 'load-path "~/elisp/geben")
 (autoload 'geben "geben" "PHP Debugger on Emacs" t)
 
 ;; nxml-mode
@@ -66,6 +65,13 @@
       scroll-step 2
       inhibit-startup-message t)
 
+;; package management
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  (package-initialize)
+  )
+
 ;; stuff for calendar
 ;;
 (setq calendar-latitude [40 21 north]
@@ -96,9 +102,14 @@
  '(ansi-color-names-vector ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#ad7fa8" "#8cc4ff" "#eeeeec"])
  '(blink-cursor-mode nil)
  '(comment-column 48)
- '(custom-enabled-themes (quote (manoj-dark)))
+ '(custom-enabled-themes (quote (tsdh-dark)))
+ '(custom-safe-themes (quote ("8bb1e9a22e9e9d405ca9bdf20b91301eba12c0b9778413ba7600e48d2d3ad1fb" default)))
+ '(fci-rule-color "#383838")
  '(show-paren-mode t)
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(vc-annotate-background "#2B2B2B")
+ '(vc-annotate-color-map (quote ((20 . "#BC8383") (40 . "#CC9393") (60 . "#DFAF8F") (80 . "#D0BF8F") (100 . "#E0CF9F") (120 . "#F0DFAF") (140 . "#5F7F5F") (160 . "#7F9F7F") (180 . "#8FB28F") (200 . "#9FC59F") (220 . "#AFD8AF") (240 . "#BFEBBF") (260 . "#93E0E3") (280 . "#6CA0A3") (300 . "#7CB8BB") (320 . "#8CD0D3") (340 . "#94BFF3") (360 . "#DC8CC3"))))
+ '(vc-annotate-very-old-color "#DC8CC3"))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

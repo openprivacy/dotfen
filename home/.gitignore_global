@@ -1,3 +1,4 @@
+settings.php
 .buildpath
 .project
 .settings
@@ -11,3 +12,10 @@
 auto-save-list
 tramp
 .\#*
+
+# Org-mode
+.org-id-locations
+*_archive
+
+# flymake-mode
+*_flymake.*
