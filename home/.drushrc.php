@@ -18,7 +18,7 @@ $options['shell-aliases']['pm-clone'] = 'pm-download --gitusername=fen --package
 $options['cache'] = TRUE;
 
 // Clone extensions (modules, themes, etc.) from drupal.org via 'pm-download'.
-$options['package-handler'] = 'git_drupalorg';
+// $options['package-handler'] = 'git_drupalorg';
 
 // Show database passwords in 'status' and 'sql-conf' commands.
 $options['show-passwords'] = 1;

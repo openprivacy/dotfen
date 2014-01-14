@@ -24,10 +24,20 @@ $aliases['parent'] = array(
 $aliases['dscadev'] = array(
   'parent' => '@local.parent',
   'root'   => "/home/fen/workspace/dscadev/docroot",
-  'uri'    => "http://dscadev.fen.net",
+  'uri'    => "dscadev.fen.net",
 );
 $aliases['gg'] = array(
   'parent' => '@local.parent',
   'root'   => "/home/fen/workspace/gg/docroot",
-  'uri'    => "http://gg.localhost",
+  'uri'    => "gg.localhost",
+);
+$aliases['fosterclub'] = array(
+  'parent' => '@local.parent',
+  'root'   => "/home/fen/workspace/fosterclub/docroot",
+  'uri'    => "fosterclub.fen.net",
+);
+$aliases['marin'] = array(
+  'parent' => '@local.parent',
+  'root'   => "/home/fen/workspace/marin",
+  'uri'    => "marin.localhost",
 );
