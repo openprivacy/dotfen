@@ -21,6 +21,7 @@
 	st = status
 	graphlog = log --oneline --graph --branches
         g = grep -n --color
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
 [push]
 	default = simple
 [credential]

@@ -1,5 +1,6 @@
 <?php
 // how to reliably cache the created aliases, then support refresh
+/*
 if (!function_exists("sbox_make_alias")) {
   function sbox_make_alias(&$aliases) {
     // set local sites directory (usually ~/workspace)
@@ -57,3 +58,4 @@ if (!function_exists("sbox_make_alias")) {
 }
 sbox_make_alias($aliases);
 // echo "all aliases: "; print_r($aliases);
+*/

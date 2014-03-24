@@ -35,7 +35,7 @@ $options['skip-tables']['common'] = array('migration_*');
 // so that Chrome can properly address them.  But I have a mishmash of sandboxes
 // some with, some without that extension.  Using explode() is heavy, but works.
 function get_multisite_docroot($sitename, $base) {
-  list($site,$version,$fen,$net) = explode('.',$sitename);
+  list($site,$version,$net) = explode('.',$sitename);
   $corelist = array('5' => 'drupal-5',
               '5r' => 'drupal-5r',
               '6'  => 'drupal-6',
@@ -49,6 +49,7 @@ function get_multisite_docroot($sitename, $base) {
   }
 }
 // set local sites directory (usually ~/workspace)
+/*
 if (file_exists("settings.php")) {
   $cwd = getcwd();
   $pos = strrpos($cwd, '/');
@@ -71,7 +72,7 @@ if (file_exists("settings.php")) {
   }
   //print_r($aliases);
 }
-
+*/
 // Tell drush we're using svn to manage our local codebase. Further, when updating
 // a module/theme, tell drush to issue the necessary 'svn add' and 'svn rm' commands
 // to sync files that have been added to / deleted from the module. Note that this does
