@@ -1,9 +1,12 @@
 <?php
-$my_home = '/home/fen/';
+$my_home_dir = getenv('HOME');
 
+if (!is_dir($my_home_dir)) {
+  drush_die("Could not find home: '\$HOME'.");
+}
 $aliases['parent'] = array(
   'path-aliases' => array(
-    '%dump-dir' => $my_home . 'nobackup',
+    '%dump-dir' => $my_home_dir . '/nobackup',
   ),
   'command-specific' => array (
     'sql-sync' => array (
@@ -12,21 +15,52 @@ $aliases['parent'] = array(
     ),
   ),
 );
-$aliases['dscadev'] = array(
+
+/**
+ * Create local aliases for standard docroot-based sites
+ */
+if (!function_exists("make_local_drush_aliases")) {
+  function make_local_drush_aliases($my_home_dir, &$aliases) {
+    // Set local sites directory (usually ~/workspace)
+    $sitesdir = $my_home_dir . '/workspace';
+    if (!is_dir($sitesdir)) {
+      drush_die("Could not find $my_home_dir/workspace.");
+    }
+    // Look in sites directory for directories
+    $sitesall = scandir($sitesdir);
+    foreach ($sitesall as $site) {
+      if (! is_dir($sitesdir .'/'. $site) || $site == 'default') {
+        continue;
+      }
+      // if we find a settings.php file, add the alias
+      if (file_exists("$sitesdir/$site/docroot/sites/default/settings.php")) {
+        $aliases[$site] = array(
+          'parent' => '@local.parent',
+          'root' => "$sitesdir/$site/docroot",
+          'uri' => "${site}.localhost",
+        );
+        if (file_exists("$sitesdir/$site/docroot/sites/default/civicrm.settings.php")) {
+          $aliases[$site . '-civicrm'] = array(
+            'parent' => '@local.' . $site,
+            'database' => 'civicrm',
+          );
+        }
+      }
+    }
+  }
+}
+make_local_drush_aliases($my_home_dir, $aliases);
+
+// Random non-standard sites
+$aliases['marin'] = array(
   'parent' => '@local.parent',
-  'root'   => "/home/fen/workspace/dscadev/docroot",
-  'uri'    => "dscadev.localhost",
+  'root'   => "/home/fen/workspace/marin",
+  'uri'    => "marin.localhost",
 );
-$aliases['dscac'] = array(
+$aliases['sacnas'] = array(
   'parent' => '@local.parent',
-  'root'   => "/home/fen/workspace/dscac/docroot",
-  'uri'    => "dscac.localhost",
-);
-# acquia hosting: fen subscription
-$aliases['dsca7'] = array(
-  'parent' => '@local.parent',
-  'root'   => "/home/fen/workspace/dsca7/docroot",
-  'uri'    => "dsca7.localhost",
+  'root'   => "/home/fen/workspace/drupal-6",
+  'uri'    => "sacnas.6.net",
 );
 # from pantheon
 $aliases['protodsca'] = array(
@@ -38,65 +72,4 @@ $aliases['dscacommons'] = array(
   'parent' => '@local.parent',
   'root'   => "/home/fen/workspace/protodsca",
   'uri'    => "protodsca.localhost",
-);
-$aliases['dsca6'] = array(
-  'parent' => '@local.parent',
-  'root'   => "/home/fen/workspace/dsca6/docroot",
-  'uri'    => "dsca6.localhost",
-);
-$aliases['pki7'] = array(
-  'parent' => '@local.parent',
-  'root'   => "/home/fen/workspace/pki7/docroot",
-  'uri'    => "pki7.localhost",
-);
-# random localhost sites
-$aliases['crmcore'] = array(
-  'parent' => '@local.parent',
-  'root'   => "/home/fen/workspace/crmcore/docroot",
-  'uri'    => "crmcore.localhost",
-);
-$aliases['crm44'] = array(
-  'parent' => '@local.parent',
-  'root'   => "/home/fen/workspace/crm44/docroot",
-  'uri'    => "crm44.localhost",
-);
-$aliases['ejusa'] = array(
-  'parent' => '@local.parent',
-  'root'   => "/home/fen/workspace/ejusa/docroot",
-  'uri'    => "ejusa.localhost",
-);
-$aliases['ejusa-civicrm'] = array(
-  'parent'   => '@local.ejusa',
-  'database' => 'civicrm',
-);
-$aliases['dli'] = array(
-  'parent' => '@local.parent',
-  'root'   => "/home/fen/workspace/dli/docroot",
-  'uri'    => "dli.localhost",
-);
-$aliases['gg'] = array(
-  'parent' => '@local.parent',
-  'root'   => "/home/fen/workspace/gg/docroot",
-  'uri'    => "gg.localhost",
-);
-$aliases['fosterclub'] = array(
-  'parent' => '@local.parent',
-  'root'   => "/home/fen/workspace/fosterclub/docroot",
-  'uri'    => "fosterclub.localhost",
-);
-$aliases['marin'] = array(
-  'parent' => '@local.parent',
-  'root'   => "/home/fen/workspace/marin",
-  'uri'    => "marin.localhost",
-);
-$aliases['entity'] = array(
-  'parent' => '@local.parent',
-  'root'   => "/home/fen/workspace/entity/docroot",
-  'uri'    => "entity.localhost",
-);
-# random multisites (.#.net)
-$aliases['sacnas'] = array(
-  'parent' => '@local.parent',
-  'root'   => "/home/fen/workspace/drupal-6",
-  'uri'    => "sacnas.6.net",
 );
