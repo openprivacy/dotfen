@@ -62,7 +62,7 @@ $aliases['sacnas'] = array(
   'root'   => "/home/fen/workspace/drupal-6",
   'uri'    => "sacnas.6.net",
 );
-# from pantheon
+// from pantheon
 $aliases['protodsca'] = array(
   'parent' => '@local.parent',
   'root'   => "/home/fen/workspace/protodsca",
