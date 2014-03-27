@@ -77,3 +77,16 @@ $aliases['sedona'] = array(
   'root'   => "/home/fen/workspace/drupal-6",
   'uri'    => "sedona.6.net",
 );
+# CiviCRM sites
+$aliases['dnow-civicrm'] = array(
+  'parent'   => '@local.dnow',
+  'database' => 'civicrm',
+);
+$aliases['sacnas-civicrm'] = array(
+  'parent'   => '@local.sacnas',
+  'database' => 'civicrm',
+);
+$aliases['sedona-civicrm'] = array(
+  'parent'   => '@local.sedona',
+  'database' => 'civicrm',
+);
