@@ -51,25 +51,29 @@ if (!function_exists("make_local_drush_aliases")) {
 }
 make_local_drush_aliases($my_home_dir, $aliases);
 
-// Random non-standard sites
-$aliases['marin'] = array(
+// Legacy multi-sites
+$aliases['agb'] = array(
   'parent' => '@local.parent',
-  'root'   => "/home/fen/workspace/marin",
-  'uri'    => "marin.localhost",
+  'root'   => "/home/fen/workspace/drupal-6",
+  'uri'    => "agb.6.net",
+);
+$aliases['agbsearch'] = array(
+  'parent' => '@local.parent',
+  'root'   => "/home/fen/workspace/drupal-6",
+  'uri'    => "agbsearch.6.net",
+);
+$aliases['dnow'] = array(
+  'parent' => '@local.parent',
+  'root'   => "/home/fen/workspace/drupal-6",
+  'uri'    => "dnow.6.net",
 );
 $aliases['sacnas'] = array(
   'parent' => '@local.parent',
   'root'   => "/home/fen/workspace/drupal-6",
   'uri'    => "sacnas.6.net",
 );
-// from pantheon
-$aliases['protodsca'] = array(
+$aliases['sedona'] = array(
   'parent' => '@local.parent',
-  'root'   => "/home/fen/workspace/protodsca",
-  'uri'    => "protodsca.localhost",
-);
-$aliases['dscacommons'] = array(
-  'parent' => '@local.parent',
-  'root'   => "/home/fen/workspace/protodsca",
-  'uri'    => "protodsca.localhost",
+  'root'   => "/home/fen/workspace/drupal-6",
+  'uri'    => "sedona.6.net",
 );
