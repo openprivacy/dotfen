@@ -2,7 +2,7 @@
 	name = "Fen Labalme"
 	email = fen@openprivacy.org
 [core]
-	autocrlf = false
+	autocrlf = input
 [color]
 	branch = auto
 	diff = auto

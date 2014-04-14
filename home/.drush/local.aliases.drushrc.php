@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file local.aliases.drushrc.php
+ * Automagically create aliases for standard sites in workspace/
+ */
 $my_home_dir = getenv('HOME');
 
 if (!is_dir($my_home_dir)) {
@@ -51,42 +55,8 @@ if (!function_exists("make_local_drush_aliases")) {
 }
 make_local_drush_aliases($my_home_dir, $aliases);
 
-// Legacy multi-sites
-$aliases['agb'] = array(
-  'parent' => '@local.parent',
-  'root'   => "/home/fen/workspace/drupal-6",
-  'uri'    => "agb.6.net",
-);
-$aliases['agbsearch'] = array(
-  'parent' => '@local.parent',
-  'root'   => "/home/fen/workspace/drupal-6",
-  'uri'    => "agbsearch.6.net",
-);
-$aliases['dnow'] = array(
-  'parent' => '@local.parent',
-  'root'   => "/home/fen/workspace/drupal-6",
-  'uri'    => "dnow.6.net",
-);
-$aliases['sacnas'] = array(
-  'parent' => '@local.parent',
-  'root'   => "/home/fen/workspace/drupal-6",
-  'uri'    => "sacnas.6.net",
-);
-$aliases['sedona'] = array(
-  'parent' => '@local.parent',
-  'root'   => "/home/fen/workspace/drupal-6",
-  'uri'    => "sedona.6.net",
-);
-# CiviCRM sites
-$aliases['dnow-civicrm'] = array(
-  'parent'   => '@local.dnow',
-  'database' => 'civicrm',
-);
-$aliases['sacnas-civicrm'] = array(
-  'parent'   => '@local.sacnas',
-  'database' => 'civicrm',
-);
-$aliases['sedona-civicrm'] = array(
-  'parent'   => '@local.sedona',
-  'database' => 'civicrm',
-);
+// If there's an additional file of local legacy site aliases,
+// include them here.
+if (file_exists(__DIR__ . '/local.aliases.drushrc.inc')) {
+  include __DIR__ . '/local.aliases.drushrc.inc';
+}
