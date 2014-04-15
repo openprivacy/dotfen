@@ -126,3 +126,8 @@ alias homeshick="$HOME/.homesick/repos/homeshick/home/.homeshick"
 for incl in ~/.bash_inc/*.bash ~/.bash_inc/*.sh
   do . $incl
 done
+
+# rvm
+if [ -f /etc/profile.d/rvm.sh ]; then
+    source /etc/profile.d/rvm.sh
+fi
