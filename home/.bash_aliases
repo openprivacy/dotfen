@@ -11,11 +11,11 @@ alias yes='echo "yes! yes! yes!"'
 
 # dir listing and changing
 alias ls='ls --color=auto'
-alias l='ls -alh'
-alias la='ls -A'
 alias ll='ls -alF'
-alias ltr='ls -ltr'
+alias l='ls -Alh'
 alias t='l -rt'
+function ltr(){ /bin/ls --color=auto -ltr "$@" | tail; }
+function ltra(){ /bin/ls --color=auto -ltrA "$@" | tail; }
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."

@@ -38,3 +38,7 @@ $command_specific['site-install'] = array(
   'account-mail' => 'fen@openprivacy.org',
   'site-mail'    => 'fen@openprivacy.org',
 );
+
+// https://git.civicactions.net/devops/drush-gitlab/
+$GLOBALS['gitlab_token'] = 'UCa1vzkrysvXky7MMrbV';
+$GLOBALS['gitlab_url'] = 'https://git.civicactions.net';
