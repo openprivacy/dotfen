@@ -1,32 +1,55 @@
 [user]
-	name = "Fen Labalme"
-	email = fen@openprivacy.org
+        name = "Fen Labalme"
+        email = fen@openprivacy.org
 [core]
-	autocrlf = input
+        # Treat spaces before tabs, lines that are indented with 8 or more spaces,
+        # and all kinds of trailing whitespace as an error
+        whitespace = space-before-tab,indent-with-non-tab,trailing-space
+        excludesfile = /home/fen/.gitignore_global
+        autocrlf = input
 [color]
-	branch = auto
-	diff = auto
-	interactive = auto
-	status = auto
+        branch = auto
+        diff = auto
+        interactive = auto
+        status = auto
 [giggle]
-	main-window-maximized = false
-	main-window-geometry = 1064x727+1689+178
-	history-view-vpane-position = 346
-	main-window-view = HistoryView
-	file-view-vpane-position = 466
-	file-view-hpane-position = 242
+        main-window-maximized = false
+        main-window-geometry = 1064x727+1689+178
+        history-view-vpane-position = 346
+        main-window-view = HistoryView
+        file-view-vpane-position = 466
+        file-view-hpane-position = 242
 [alias]
-	co = checkout
-	ci = commit
-	st = status
-	graphlog = log --oneline --graph --branches
+        co = checkout
+        ci = commit
+        st = status
+        s = status -s
         g = grep -n --color
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+        # View the SHA, description, and history graph of the latest 20 commits
+        l = log --pretty=oneline -n 20 --graph
+        lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+        graphlog = log --oneline --graph --branches
+        # Show verbose output about tags, branches or remotes
+        tags = tag -l
+        branches = branch -a
+        remotes = remote -v
+        # Undo a `git push`
+        undopush = push -f origin HEAD^:master
+[apply]
+        # Detect whitespace errors when applying a patch
+        whitespace = fix
 [push]
-	default = simple
+        default = simple
+[merge]
+        # Include summaries of merged commits in newly created merge commit messages
+        log = true
+[branch "master"]
+        # Use `origin` as the default remote on the `master` branch in all cases
+        remote = origin
+        merge = refs/heads/master
 [credential]
-	helper = cache --timeout=3600
+        helper = cache --timeout=3600
 [diff]
-	tool = meld
+        tool = meld
 [difftool]
-	prompt = false
+        prompt = false
