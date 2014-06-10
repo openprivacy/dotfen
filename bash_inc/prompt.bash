@@ -13,6 +13,10 @@ function prompt() {
   #  [[ $(grep `pwd` ~/.drush/*aliases.drushrc.php) ]] && prompt_char='∞ '
 
   case $TERM in
+    "dumb")
+      PS1="> "
+      return
+      ;;
     xterm*)
       TITLEBAR='\[\033]0;[\u@\h] \w\007\]'
       ;;
