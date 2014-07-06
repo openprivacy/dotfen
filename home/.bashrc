@@ -8,6 +8,11 @@ case $- in
       *) return;;
 esac
 
+# set PATH so it includes composers global bin directory
+if [ -d "$HOME/.composer/vendor/bin" ] ; then
+    export PATH="$HOME/.composer/vendor/bin:$PATH"
+fi
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     export PATH="$HOME/bin:$PATH"
