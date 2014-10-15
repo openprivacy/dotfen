@@ -7,6 +7,8 @@
         whitespace = space-before-tab,indent-with-non-tab,trailing-space
         excludesfile = /home/fen/.gitignore_global
         autocrlf = input
+[log]
+        abbrevCommit = true
 [color]
         branch = auto
         diff = auto
@@ -35,18 +37,15 @@
         remotes = remote -v
         # Undo a `git push`
         undopush = push -f origin HEAD^:master
-[apply]
-        # Detect whitespace errors when applying a patch
-        whitespace = fix
 [push]
         default = simple
 [merge]
         # Include summaries of merged commits in newly created merge commit messages
         log = true
-[branch "master"]
+# [branch "master"]
         # Use `origin` as the default remote on the `master` branch in all cases
-        remote = origin
-        merge = refs/heads/master
+        # remote = origin
+        # merge = refs/heads/master
 [credential]
         helper = cache --timeout=3600
 [diff]

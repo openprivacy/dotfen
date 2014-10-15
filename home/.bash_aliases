@@ -61,7 +61,8 @@ alias psg='/bin/ps auxww | grep'
 alias purge='/bin/rm -f \#*\# *~ .*~ *% .*% core'
 
 # git
-alias av='git branch -av'
-alias suno='git status -s -uno'
+alias av='git branch -avv'
+alias bv='git branch -vv'
 alias rv='git remote -v'
+alias suno='git status -s -uno'
 alias staged='git diff --staged'
