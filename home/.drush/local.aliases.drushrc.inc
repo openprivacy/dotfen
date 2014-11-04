@@ -4,32 +4,26 @@
  * Legacy multi-sites (required by local.aliases.drushrc.php)
  */
 $aliases['agb'] = array(
-  'parent' => '@local.parent',
   'root'   => "/home/fen/workspace/drupal-6",
   'uri'    => "agb.6.net",
 );
 $aliases['agbsearch'] = array(
-  'parent' => '@local.parent',
   'root'   => "/home/fen/workspace/drupal-6",
   'uri'    => "agbsearch.6.net",
 );
 $aliases['cnu'] = array(
-  'parent' => '@local.parent',
   'root'   => "/home/fen/workspace/drupal-6",
   'uri'    => "cnu.6.net",
 );
 $aliases['dnow'] = array(
-  'parent' => '@local.parent',
   'root'   => "/home/fen/workspace/drupal-6",
   'uri'    => "dnow.6.net",
 );
 $aliases['sacnas'] = array(
-  'parent' => '@local.parent',
   'root'   => "/home/fen/workspace/drupal-6",
   'uri'    => "sacnas.6.net",
 );
 $aliases['sedona'] = array(
-  'parent' => '@local.parent',
   'root'   => "/home/fen/workspace/drupal-6",
   'uri'    => "sedona.6.net",
 );

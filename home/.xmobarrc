@@ -1,0 +1,40 @@
+Config { -- font = "xft:Inconsolata:pixelsize=14"
+       font = "xft:Terminus:pixelsize=14"
+       , borderColor = "black"
+       , border = TopB
+       , bgColor = "black"
+       , fgColor = "grey"
+       , position = Top
+       , lowerOnStart = True
+       , persistent = False
+       , hideOnStart = False
+       , commands = [
+       -- weather monitor
+       Run Weather "RJTT" [ "--template", "<fc=#4682B4><tempF></fc>°F | <fc=#4682B4><rh></fc>%rh"
+			  ] 36000
+       -- network activity monitor (dynamic interface resolution)
+       , Run DynNetwork   [ "--template" , "<dev> tx:<tx> rx:<rx>"
+			  , "--Low"      , "5000"       -- units: kB/s
+			  , "--High"     , "10000"      -- units: kB/s
+			  , "--low"      , "darkgreen"
+			  , "--normal"   , "darkorange"
+			  , "--high"     , "darkred"
+			  ] 10
+       -- network activity monitor (dynamic interface resolution)
+       -- , Run Network "wlp3s0" ["-L","0","-H","32","--normal","green","--high","red"] 10
+       , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
+       , Run Memory ["-t","Mem: <usedratio>%"] 10
+       , Run BatteryP ["BAT0"]
+              ["-t", "<acstatus> (<left>%)",
+               "-L", "10", "-H", "80", "-p", "3",
+               "--", "-O", "<fc=green>On</fc> - ", "-i", "",
+               "-L", "-15", "-H", "-5",
+               "-l", "red", "-m", "blue", "-h", "green"]
+              600
+       , Run Date "%a %b %_d %Y %r" "date" 10
+       , Run StdinReader
+       ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%battery% | %StdinReader% }{ %cpu% %memory% | %dynnetwork% | %RJTT% | <fc=#ee9a00>%date%</fc>"
+       }
