@@ -1,5 +1,5 @@
-Config { -- font = "xft:Inconsolata:pixelsize=14"
-       font = "xft:Terminus:pixelsize=14"
+-- -*- haskell -*-
+Config { font = "xft:Terminus:pixelsize=14"
        , borderColor = "black"
        , border = TopB
        , bgColor = "black"
