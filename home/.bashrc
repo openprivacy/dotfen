@@ -13,6 +13,11 @@ if [ -d "$HOME/.composer/vendor/bin" ] ; then
     export PATH="$HOME/.composer/vendor/bin:$PATH"
 fi
 
+# set PATH so it includes cabal global bin directory
+if [ -d "$HOME/.cabal/bin" ] ; then
+    export PATH="$HOME/.cabal/bin:$PATH"
+fi
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     export PATH="$HOME/bin:$PATH"
@@ -135,4 +140,9 @@ done
 # rvm
 if [ -f /etc/profile.d/rvm.sh ]; then
     source /etc/profile.d/rvm.sh
+fi
+
+# aws
+if [ -f ~/.aws_keys ]; then
+    source ~/.aws_keys
 fi
