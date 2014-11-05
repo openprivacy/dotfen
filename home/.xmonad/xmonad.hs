@@ -143,8 +143,8 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((0, xF86XK_AudioLowerVolume      ), safeSpawn "amixer" ["-q", "set", "Master", "1-"])
     , ((0, xF86XK_AudioMute             ), safeSpawn "amixer" ["-q", "set", "Master", "toggle"])
 --}
-    , ((0, xF86XK_AudioRaiseVolume      ), safeSpawn "ponymix" ["increase", "5"])
-    , ((0, xF86XK_AudioLowerVolume      ), safeSpawn "ponymix" ["decrease", "5"])
+    , ((0, xF86XK_AudioRaiseVolume      ), safeSpawn "ponymix" ["increase", "3"])
+    , ((0, xF86XK_AudioLowerVolume      ), safeSpawn "ponymix" ["decrease", "3"])
     , ((0, xF86XK_AudioMute             ), safeSpawn "ponymix" ["toggle"])
     , ((0, xF86XK_AudioPlay             ), safeSpawn "mocp" ["-G"])
     , ((0, xF86XK_AudioNext             ), safeSpawn "mocp" ["-f"])
@@ -154,9 +154,13 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask,               xK_Up    ), spawn "amixer -c 1 set Master 1dB+")
     , ((modMask,               xK_Down  ), spawn "amixer -c 1 set Master 1dB-")
 
+    -- audacious
+    , ((modMask,               xK_x     ), spawn "audtool playlist-advance")
+    , ((modMask,               xK_z     ), spawn "audtool playback-pause")
+
     -- xbacklight
-    , ((modMask,               xK_Page_Up    ), spawn "xbacklight +5")
-    , ((modMask,               xK_Page_Down  ), spawn "xbacklight -5")
+    , ((0, xF86XK_MonBrightnessUp       ), spawn "xbacklight +5")
+    , ((0, xF86XK_MonBrightnessDown     ), spawn "xbacklight -5")
 
     -- grid
     , ((modMask,               xK_g     ), goToSelected myGSConfig)

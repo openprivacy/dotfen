@@ -10,12 +10,12 @@ Config { font = "xft:Terminus:pixelsize=14"
        , hideOnStart = False
        , commands = [
        -- weather monitor
-       Run Weather "RJTT" [ "--template", "<fc=#4682B4><tempF></fc>°F | <fc=#4682B4><rh></fc>%rh"
+       Run Weather "KAGC" [ "--template", "<fc=#4682B4><tempF></fc>°F"
 			  ] 36000
        -- network activity monitor (dynamic interface resolution)
        , Run DynNetwork   [ "--template" , "<dev> tx:<tx> rx:<rx>"
-			  , "--Low"      , "5000"       -- units: kB/s
-			  , "--High"     , "10000"      -- units: kB/s
+			  , "--Low"      , "2000"       -- units: kB/s
+			  , "--High"     , "5000"       -- units: kB/s
 			  , "--low"      , "darkgreen"
 			  , "--normal"   , "darkorange"
 			  , "--high"     , "darkred"
@@ -36,5 +36,5 @@ Config { font = "xft:Terminus:pixelsize=14"
        ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%battery% | %StdinReader% }{ %cpu% %memory% | %dynnetwork% | %RJTT% | <fc=#ee9a00>%date%</fc>"
+       , template = "%battery% | %StdinReader% }{ %dynnetwork% | %cpu% %memory% | %KAGC% | <fc=#ee9a00>%date%</fc>"
        }

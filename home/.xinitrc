@@ -11,15 +11,15 @@
 #  unset f
 #fi
 
-# /usr/bin/start-pulseaudio-x11
+/usr/bin/start-pulseaudio-x11
 
 #xbacklight -set 40
 #xrdb .Xresources
-/usr/bin/ssh-agent
 date >> ~/boot.log
 xsetroot -cursor_name left_ptr
 #unclutter -idle 2 &
 #/usr/bin/urxvtd -q -f -o
 #/usr/bin/lxterminal
 #redshift &
+#eval $( ssh-agent -s )
 exec /home/fen/.cabal/bin/xmonad

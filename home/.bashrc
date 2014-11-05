@@ -10,19 +10,20 @@ esac
 
 # set PATH so it includes composers global bin directory
 if [ -d "$HOME/.composer/vendor/bin" ] ; then
-    export PATH="$HOME/.composer/vendor/bin:$PATH"
+    PATH="$HOME/.composer/vendor/bin:$PATH"
 fi
 
 # set PATH so it includes cabal global bin directory
 if [ -d "$HOME/.cabal/bin" ] ; then
-    export PATH="$HOME/.cabal/bin:$PATH"
+    PATH="$HOME/.cabal/bin:$PATH"
 fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
-    export PATH="$HOME/bin:$PATH"
+    PATH="$HOME/bin:$PATH"
 fi
 
+export PATH
 export EDITOR=vi
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -146,3 +147,10 @@ fi
 if [ -f ~/.aws_keys ]; then
     source ~/.aws_keys
 fi
+
+# gpg & ssh
+#if [ -f "${HOME}/.gpg-agent-info" ]; then
+#  . "${HOME}/.gpg-agent-info"
+#  export GPG_AGENT_INFO
+#  export SSH_AUTH_SOCK
+#fi
