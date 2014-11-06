@@ -116,7 +116,8 @@ layoutHook' = tile ||| mtile ||| tab ||| full
 -- terminal' = "~/bin/urxvt.sh"
 -- terminal' = "/usr/bin/xfce4-terminal"
 -- terminal' = "/usr/bin/urxvt"
-terminal' = "/usr/bin/lxterminal"
+-- terminal' = "/usr/bin/lxterminal"
+terminal' = "/usr/bin/xfce4-terminal"
 
 -------------------------------------------------------------------------------
 -- Keys/Button bindings --
