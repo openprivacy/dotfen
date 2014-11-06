@@ -1,6 +1,5 @@
 -------------------------------------------------------------------------------
--- xmonad.hs for xmonad-darcs
--- Author: Øyvind 'Mr.Elendig' Heggstad <mrelendig AT har-ikkje DOT net>
+-- Based on xmonad.hs for xmonad-darcs by <mrelendig AT har-ikkje DOT net>
 -------------------------------------------------------------------------------
 -- Compiler flags --
 {-# LANGUAGE NoMonomorphismRestriction #-}
@@ -138,11 +137,6 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask .|. shiftMask, xK_c     ), kill)
 
     -- multimedia
-{-- Alsa mixer bindings
-    , ((0, xF86XK_AudioRaiseVolume      ), safeSpawn "amixer" ["-q", "set", "Master", "1+"])
-    , ((0, xF86XK_AudioLowerVolume      ), safeSpawn "amixer" ["-q", "set", "Master", "1-"])
-    , ((0, xF86XK_AudioMute             ), safeSpawn "amixer" ["-q", "set", "Master", "toggle"])
---}
     , ((0, xF86XK_AudioRaiseVolume      ), safeSpawn "ponymix" ["increase", "3"])
     , ((0, xF86XK_AudioLowerVolume      ), safeSpawn "ponymix" ["decrease", "3"])
     , ((0, xF86XK_AudioMute             ), safeSpawn "ponymix" ["toggle"])
@@ -161,6 +155,9 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- xbacklight
     , ((0, xF86XK_MonBrightnessUp       ), spawn "xbacklight +5")
     , ((0, xF86XK_MonBrightnessDown     ), spawn "xbacklight -5")
+
+    -- Screenshot (FIXME: set file name to unique, date-based name)
+    , ((0,                     xK_Print ), spawn "gm import $HOME/Downloads/tmp.png")
 
     -- grid
     , ((modMask,               xK_g     ), goToSelected myGSConfig)
