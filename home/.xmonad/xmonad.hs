@@ -132,6 +132,9 @@ keys' :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- launching and killing programs
     [ ((modMask,               xK_Return), safeSpawn (XMonad.terminal conf) [])
+    , ((modMask .|. shiftMask, xK_t     ), safeSpawn "emacs" [])
+    , ((modMask .|. shiftMask, xK_f     ), safeSpawn "firefox" [])
+    , ((modMask .|. shiftMask, xK_g     ), safeSpawn "google-chrome-beta" [])
     , ((modMask,               xK_p     ), safeSpawn "dmenu_run" [])
     , ((modMask .|. shiftMask, xK_p     ), safeSpawn "gmrun" [])
     , ((modMask .|. shiftMask, xK_m     ), safeSpawn "claws-mail" [])

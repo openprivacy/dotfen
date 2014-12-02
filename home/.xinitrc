@@ -21,5 +21,5 @@ xsetroot -cursor_name left_ptr
 #/usr/bin/urxvtd -q -f -o
 #/usr/bin/lxterminal
 #redshift &
-#eval $( ssh-agent -s )
+eval $(ssh-agent)
 exec /home/fen/.cabal/bin/xmonad

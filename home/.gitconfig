@@ -1,6 +1,6 @@
 [user]
         name = "Fen Labalme"
-        email = fen@openprivacy.org
+        email = fen@civicactions.com
 [core]
         # Treat spaces before tabs, lines that are indented with 8 or more spaces,
         # and all kinds of trailing whitespace as an error
@@ -47,7 +47,7 @@
         # remote = origin
         # merge = refs/heads/master
 [credential]
-        helper = cache --timeout=3600
+        helper = cache --timeout=7200
 [diff]
         tool = meld
 [difftool]
