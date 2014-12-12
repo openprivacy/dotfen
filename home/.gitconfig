@@ -1,26 +1,41 @@
 [user]
         name = "Fen Labalme"
         email = fen@civicactions.com
+[credential]
+        helper = cache --timeout=7200
+##
+## These are standard CivicActions git settings for developers.
+##
+[branch]
+	autosetuprebase = always
 [core]
         # Treat spaces before tabs, lines that are indented with 8 or more spaces,
         # and all kinds of trailing whitespace as an error
         whitespace = space-before-tab,indent-with-non-tab,trailing-space
-        excludesfile = /home/fen/.gitignore_global
+	excludesfile = ~/.gitignore_global
         autocrlf = input
-[log]
-        abbrevCommit = true
+[pull]
+	ff = only
+[push]
+        default = simple
+[merge]
+        # Include summaries of merged commits in newly created merge commit messages
+        log = true
+	ff = only
+##
+## The following configurations can be modified per personal preference.
+##
 [color]
         branch = auto
         diff = auto
         interactive = auto
         status = auto
-[giggle]
-        main-window-maximized = false
-        main-window-geometry = 1064x727+1689+178
-        history-view-vpane-position = 346
-        main-window-view = HistoryView
-        file-view-vpane-position = 466
-        file-view-hpane-position = 242
+[diff]
+        tool = meld
+[difftool]
+        prompt = false
+[log]
+        abbrevCommit = true
 [alias]
         co = checkout
         ci = commit
@@ -35,20 +50,3 @@
         tags = tag -l
         branches = branch -a
         remotes = remote -v
-        # Undo a `git push`
-        undopush = push -f origin HEAD^:master
-[push]
-        default = simple
-[merge]
-        # Include summaries of merged commits in newly created merge commit messages
-        log = true
-# [branch "master"]
-        # Use `origin` as the default remote on the `master` branch in all cases
-        # remote = origin
-        # merge = refs/heads/master
-[credential]
-        helper = cache --timeout=7200
-[diff]
-        tool = meld
-[difftool]
-        prompt = false
