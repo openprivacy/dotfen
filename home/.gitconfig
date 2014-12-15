@@ -14,14 +14,14 @@
         whitespace = space-before-tab,indent-with-non-tab,trailing-space
 	excludesfile = ~/.gitignore_global
         autocrlf = input
-[pull]
-	ff = only
-[push]
-        default = simple
 [merge]
         # Include summaries of merged commits in newly created merge commit messages
         log = true
 	ff = only
+[pull]
+	ff = only
+[push]
+        default = simple
 ##
 ## The following configurations can be modified per personal preference.
 ##
@@ -42,9 +42,10 @@
         st = status
         s = status -s
         g = grep -n --color
-        # View the SHA, description, and history graph of the latest 20 commits
-        l = log --pretty=oneline -n 20 --graph
-        lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+        # Handy logging aliases; lol is normal; ll is long form; l breaks at 20 lines
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
+        ll = log --graph --decorate --abbrev-commit --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset'
+        l = log --graph --decorate --pretty=oneline --abbrev-commit --all -n 20
         graphlog = log --oneline --graph --branches
         # Show verbose output about tags, branches or remotes
         tags = tag -l
