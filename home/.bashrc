@@ -23,8 +23,8 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-if [ -f ~/.git-completion.bash ]; then
-  . ~/.git-completion.bash
+if [ -f /usr/share/git/completion/git-completion.bash ]; then
+  . /usr/share/git/completion/git-completion.bash
 fi
 
 export PATH
