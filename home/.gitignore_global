@@ -1,8 +1,9 @@
+# CDT, PDT, PHPStorm specific
 .buildpath
 .project
 .settings
 .idea
-TAGS
+
 # emacs
 *~
 \#*\#
@@ -12,6 +13,7 @@ TAGS
 auto-save-list
 tramp
 .\#*
+TAGS
 
 # Org-mode
 .org-id-locations
@@ -19,3 +21,8 @@ tramp
 
 # flymake-mode
 *_flymake.*
+
+# GNU global
+GPATH
+GRTAGS
+GTAGS
