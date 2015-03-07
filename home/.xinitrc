@@ -11,6 +11,8 @@
 #  unset f
 #fi
 
+source /etc/X11/xinit/xinitrc.d/30-dbus.sh
+
 /usr/bin/start-pulseaudio-x11
 
 #xbacklight -set 40
@@ -21,5 +23,9 @@ xsetroot -cursor_name left_ptr
 #/usr/bin/urxvtd -q -f -o
 #/usr/bin/lxterminal
 #redshift &
-eval $(ssh-agent)
+#eval $(ssh-agent)
+
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
+
 exec /home/fen/.cabal/bin/xmonad
