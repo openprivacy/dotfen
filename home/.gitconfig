@@ -7,19 +7,19 @@
 ## These are standard CivicActions git settings for developers.
 ##
 [branch]
-	autosetuprebase = always
+        autosetuprebase = always
 [core]
         # Treat spaces before tabs, lines that are indented with 8 or more spaces,
         # and all kinds of trailing whitespace as an error
         whitespace = space-before-tab,indent-with-non-tab,trailing-space
-	excludesfile = ~/.gitignore_global
+        excludesfile = ~/.gitignore_global
         autocrlf = input
 [merge]
         # Include summaries of merged commits in newly created merge commit messages
         log = true
-	ff = only
+        ff = only
 [pull]
-	ff = only
+        ff = only
 [push]
         default = simple
 ##
@@ -36,16 +36,21 @@
         prompt = false
 [log]
         abbrevCommit = true
+        date = short
+        decorate = short
+[format]
+#       pretty = format:%C(auto)%h %Cblue%ad%C(auto)%d %Creset%<(80,trunc)%s <%<(7,trunc)%aN>
 [alias]
         co = checkout
         ci = commit
         st = status
         s = status -s
         g = grep -n --color
+        d = difftool
         # Handy logging aliases; lol is normal; ll is long form; l breaks at 20 lines
-	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
-        ll = log --graph --decorate --abbrev-commit --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset'
-        l = log --graph --decorate --pretty=oneline --abbrev-commit --all -n 20
+        lol = log --graph --pretty=oneline --abbrev-commit --all
+        ll = log --graph --all --pretty=format:'%C(auto)%h %Cblue%ad %Cred<%<(7,trunc)%aN> %Creset%B%C(auto)%d'
+        l = log --graph --all --pretty=format:'%C(auto)%h %Cblue%ad %Cred<%<(7,trunc)%aN> %Creset%s%C(auto)%d' -n 20
         graphlog = log --oneline --graph --branches
         # Show verbose output about tags, branches or remotes
         tags = tag -l
