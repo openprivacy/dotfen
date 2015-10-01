@@ -36,5 +36,5 @@ Config { font = "xft:Terminus:pixelsize=14"
        ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%battery% | %StdinReader% }{ %dynnetwork% | %cpu% %memory% | %KAGC% | <fc=#ee9a00>%date%</fc>"
+       , template = "%battery% | %StdinReader% } | { %dynnetwork% | %cpu% %memory% | %KAGC% | <fc=#ee9a00>%date%</fc>"
        }

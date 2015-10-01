@@ -21,6 +21,12 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+# Set PATH so it includes user's ruby bin directory.
+if [ -d "$HOME/go/bin" ] ; then
+    export GOPATH="$HOME/.gem/ruby/2.2.0/bin"
+    PATH="$PATH:$HOME/.gem/ruby/2.2.0/bin"
+fi
+
 # Set PATH so it includes go global bin directory.
 if [ -d "$HOME/go/bin" ] ; then
     export GOPATH="$HOME/go"
@@ -29,6 +35,9 @@ fi
 
 export PATH
 export EDITOR=vi
+
+# Xmonad fix for LibreOffice dialog issues when not using gwd
+export SAL_USE_VCLPLUGIN="gen lowriter"
 
 # Enable git command line completion.
 if [ -f /usr/share/git/completion/git-completion.bash ]; then

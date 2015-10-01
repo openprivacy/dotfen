@@ -11,22 +11,23 @@
 #  unset f
 #fi
 
-source /etc/X11/xinit/xinitrc.d/30-dbus.sh
-
 /usr/bin/start-pulseaudio-x11
+
+# time correction - only run if network active - now run by systemctl
+# sudo ntpd -q
 
 #xbacklight -set 40
 #xrdb .Xresources
 date >> ~/boot.log
 xsetroot -cursor_name left_ptr
 #unclutter -idle 2 &
-#/usr/bin/urxvtd -q -f -o
-#/usr/bin/lxterminal
 #redshift &
-#eval $(ssh-agent)
 
-eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-export SSH_AUTH_SOCK
+xrandr --dpi 106
 
-#exec /home/fen/.cabal/bin/xmonad
+#eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+#export SSH_AUTH_SOCK
+
+eval $(ssh-agent)
+
 exec /usr/bin/xmonad

@@ -52,6 +52,7 @@ alias sniff="sudo ngrep -d 'wlan0' -t '^(GET|POST) ' 'tcp and port 80'"
 
 # Shortcuts
 alias c=clear
+alias fig=docker-compose
 alias h='history'
 alias h10='history 10'
 alias j='jobs -l'
