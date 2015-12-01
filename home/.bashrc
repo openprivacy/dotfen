@@ -44,6 +44,11 @@ if [ -f /usr/share/git/completion/git-completion.bash ]; then
   . /usr/share/git/completion/git-completion.bash
 fi
 
+# Enable AWS command line completion.
+if [ -f /usr/bin/aws_completer ]; then
+  complete -C aws_completer aws
+fi
+
 # Don't put duplicate lines or lines starting with space in the history.
 export HISTCONTROL=ignoreboth
 export HISTIGNORE='history*'

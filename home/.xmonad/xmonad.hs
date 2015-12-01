@@ -3,6 +3,7 @@
 -------------------------------------------------------------------------------
 -- Compiler flags --
 {-# LANGUAGE NoMonomorphismRestriction #-}
+{-# LANGUAGE FlexibleContexts #-}
 
 -- Imports --
 -- stuff
