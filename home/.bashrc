@@ -8,17 +8,12 @@ esac
 
 # Set PATH so it includes composers global bin directory.
 if [ -d "$HOME/.composer/vendor/bin" ] ; then
-    PATH="$HOME/.composer/vendor/bin:$PATH"
+    PATH="$PATH:$HOME/.composer/vendor/bin"
 fi
 
 # Set PATH so it includes cabal global bin directory.
 if [ -d "$HOME/.cabal/bin" ] ; then
-    PATH="$HOME/.cabal/bin:$PATH"
-fi
-
-# Set PATH so it includes user's private bin if it exists.
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+    PATH="$PATH:$HOME/.cabal/bin"
 fi
 
 # Set PATH so it includes user's ruby bin directory.
@@ -31,6 +26,19 @@ fi
 if [ -d "$HOME/go/bin" ] ; then
     export GOPATH="$HOME/go"
     PATH="$PATH:$HOME/go/bin"
+fi
+
+# Set PATH so it includes CUDA bin directory and add to LD_LIBRARY_PATH.
+if [ -d "/usr/local/cuda-7.5/bin" ] ; then
+    PATH="$PATH:/usr/local/cuda-7.5/bin"
+    if [ -d "/usr/local/cuda-7.5/lib64" ]; then
+	export LD_LIBRARY_PATH=/usr/local/cuda-7.5/lib64:$LD_LIBRARY_PATH
+    fi
+fi
+
+# Set PATH so it includes user's private bin *first* if it exists.
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
 fi
 
 export PATH
