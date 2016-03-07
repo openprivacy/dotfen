@@ -1,3 +1,8 @@
+# -*- shell-script -*-
+
+# homeshick & dotfen support
+alias homeshick="$HOME/.homesick/repos/homeshick/home/.homeshick"
+
 # misc
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -49,6 +54,13 @@ alias sudo='sudo '
 
 # View HTTP traffic
 alias sniff="sudo ngrep -d 'wlan0' -t '^(GET|POST) ' 'tcp and port 80'"
+
+# Solr server access - then http://localhost:8983/solr/#/
+alias solr_connect='ssh gn2-solr -f -L 8983:localhost:8983 -N'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Shortcuts
 alias c=clear

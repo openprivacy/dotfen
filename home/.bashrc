@@ -6,21 +6,17 @@ case $- in
       *) return;;
 esac
 
+# Set PATH so it includes user's private bin *first* if it exists.
+[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
+
 # Set PATH so it includes composers global bin directory.
-if [ -d "$HOME/.composer/vendor/bin" ] ; then
-    PATH="$PATH:$HOME/.composer/vendor/bin"
-fi
+[ -d "$HOME/.composer/vendor/bin" ] && PATH="$PATH:$HOME/.composer/vendor/bin"
 
 # Set PATH so it includes cabal global bin directory.
-if [ -d "$HOME/.cabal/bin" ] ; then
-    PATH="$PATH:$HOME/.cabal/bin"
-fi
+[ -d "$HOME/.cabal/bin" ] && PATH="$PATH:$HOME/.cabal/bin"
 
 # Set PATH so it includes user's ruby bin directory.
-if [ -d "$HOME/go/bin" ] ; then
-    export GOPATH="$HOME/.gem/ruby/2.2.0/bin"
-    PATH="$PATH:$HOME/.gem/ruby/2.2.0/bin"
-fi
+[ -d "$HOME/.gem/ruby/2.2.0/bin" ] && PATH="$PATH:$HOME/.gem/ruby/2.2.0/bin"
 
 # Set PATH so it includes go global bin directory.
 if [ -d "$HOME/go/bin" ] ; then
@@ -36,151 +32,98 @@ if [ -d "/usr/local/cuda-7.5/bin" ] ; then
     fi
 fi
 
-# Set PATH so it includes user's private bin *first* if it exists.
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
 export PATH
 export EDITOR=vi
 
-# Xmonad fix for LibreOffice dialog issues when not using gwd
-export SAL_USE_VCLPLUGIN="gen lowriter"
-
 # Enable git command line completion.
-if [ -f /usr/share/git/completion/git-completion.bash ]; then
-  . /usr/share/git/completion/git-completion.bash
-fi
+[ -f /usr/share/git/completion/git-completion.bash ] && \
+    source /usr/share/git/completion/git-completion.bash
 
 # Enable AWS command line completion.
-if [ -f /usr/bin/aws_completer ]; then
-  complete -C aws_completer aws
-fi
+[ -f /usr/bin/aws_completer ] && complete -C aws_completer aws
 
-# Don't put duplicate lines or lines starting with space in the history.
-export HISTCONTROL=ignoreboth
-export HISTIGNORE='history*'
-
-# Append to the history file, don't overwrite it.
-shopt -s histappend
-
-# For setting history length see HISTSIZE and HISTFILESIZE in bash(1).
-HISTSIZE=1000
-HISTFILESIZE=2000
-
-# Check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+# Load AWS CLI keys
+[ -f $HOME/.aws_keys ] && source $HOME/.aws_keys
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar
 
 # Make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+[ -x /usr/bin/lesspipe.sh ] && export LESSOPEN="|lesspipe.sh %s"
 
-# Set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# Set a fancy prompt (non-color, unless we know we "want" color).
-case "$TERM" in
-    xterm-color) color_prompt=yes;;
-esac
-
-# Uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
-
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-  xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-  *)
-    ;;
-esac
-
-# Enable color support of ls and also add handy aliases.
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+# Xmonad fix for LibreOffice dialog issues when not using gwd
+export SAL_USE_VCLPLUGIN="gen lowriter"
 
 # Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+[ -f $HOME/.bash_aliases ] && source $HOME/.bash_aliases
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+# A sensible bash environment from https://github.com/mrzool/bash-sensible
+if [ -f "$HOME/.homesick/repos/bash-sensible/sensible.bash" ]; then
+    source $HOME/.homesick/repos/bash-sensible/sensible.bash
+else
+    # Don't put duplicate lines or lines starting with space in the history.
+    export HISTCONTROL=ignoreboth
+    export HISTIGNORE='history*'
+
+    # Append to the history file, don't overwrite it.
+    shopt -s histappend
+
+    # For setting history length see HISTSIZE and HISTFILESIZE in bash(1).
+    HISTSIZE=50000
+    HISTFILESIZE=20000
+
+    # Check the window size after each command and, if necessary,
+    # update the values of LINES and COLUMNS.
+    shopt -s checkwinsize
+
+    # Quick change dir to within this list.
+    shopt -s autocd
+    shopt -s cdspell
 fi
-
-# Enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
-
-# Quick change dir to within this list.
-shopt -s autocd
-shopt -s cdspell
-
-# homeshick & dotfen support
-alias homeshick="$HOME/.homesick/repos/homeshick/home/.homeshick"
 
 # For this to work, first create a symlink, for example:
 # ln -s ~/.homesick/repos/dotfen/bash_inc ~/.bash_inc
-for incl in ~/.bash_inc/*.bash ~/.bash_inc/*.sh
+for incl in $HOME/.bash_inc/*.bash $HOME/.bash_inc/*.sh
   do . $incl
 done
 
-# rvm
-if [ -f /etc/profile.d/rvm.sh ]; then
-    source /etc/profile.d/rvm.sh
-fi
+# Set up a basic color prompt if no local prompt setting available
+if [ ! -f $HOME/.bash_inc/prompt.bash ]; then
+# Set variable identifying the chroot you work in (used in the prompt below)
+    if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+	debian_chroot=$(cat /etc/debian_chroot)
+    fi
 
-# AWS
-if [ -f ~/.aws_keys ]; then
-    source ~/.aws_keys
-fi
+    # Set a fancy prompt (non-color, unless we know we "want" color).
+    case "$TERM" in
+	xterm-color) color_prompt=yes;;
+    esac
 
-# gpg & ssh
-#if [ -f "${HOME}/.gpg-agent-info" ]; then
-#  . "${HOME}/.gpg-agent-info"
-#  export GPG_AGENT_INFO
-#  export SSH_AUTH_SOCK
-#fi
+    if [ -n "$force_color_prompt" ]; then
+	if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	    # We have color support; assume it's compliant with Ecma-48
+	    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	    # a case would tend to support setf rather than setaf.)
+	    color_prompt=yes
+	else
+	    color_prompt=
+	fi
+    fi
+
+    if [ "$color_prompt" = yes ]; then
+	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    else
+	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    fi
+    unset color_prompt force_color_prompt
+
+    # If this is an xterm set the title to user@host:dir
+    case "$TERM" in
+	xterm*|rxvt*)
+	    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+	    ;;
+	*)
+	    ;;
+    esac
+fi
