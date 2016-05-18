@@ -79,3 +79,7 @@ alias bv='git branch -vv'
 alias rv='git remote -v'
 alias suno='git status -s -uno'
 alias staged='git diff --staged'
+
+# Docker
+alias docker-clean='docker rmi -f $(docker images -q -a -f dangling=true)'
+
