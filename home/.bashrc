@@ -16,7 +16,7 @@ esac
 [ -d "$HOME/.cabal/bin" ] && PATH="$PATH:$HOME/.cabal/bin"
 
 # Set PATH so it includes user's ruby bin directory.
-[ -d "$HOME/.gem/ruby/2.2.0/bin" ] && PATH="$PATH:$HOME/.gem/ruby/2.2.0/bin"
+[ -d "$HOME/.gem/ruby/2.3.0/bin" ] && PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin"
 
 # Set PATH so it includes go global bin directory.
 if [ -d "$HOME/go/bin" ] ; then
@@ -34,6 +34,16 @@ fi
 
 export PATH
 export EDITOR=vi
+
+# Set SSH to use gpg-agent (https://wiki.archlinux.org/index.php/GnuPG#gpg-agent)
+unset SSH_AGENT_PID
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+    export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
+fi
+# Set GPG TTY
+export GPG_TTY=$(tty)
+# Refresh gpg-agent tty in case user switches into an X session
+gpg-connect-agent updatestartuptty /bye >/dev/null
 
 # Enable git command line completion.
 [ -f /usr/share/git/completion/git-completion.bash ] && \

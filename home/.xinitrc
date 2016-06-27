@@ -25,9 +25,6 @@ xsetroot -cursor_name left_ptr
 
 xrandr --dpi 106
 
-#eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-#export SSH_AUTH_SOCK
-
-eval $(ssh-agent)
+#eval $(ssh-agent)
 
 exec /usr/bin/xmonad

@@ -20,7 +20,7 @@ import XMonad.Actions.GridSelect
 -- hooks
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageHelpers
-import XMonad.Hooks.UrgencyHook
+-- import XMonad.Hooks.UrgencyHook
 import XMonad.Hooks.InsertPosition
 
 -- layouts
@@ -31,27 +31,33 @@ import XMonad.Layout.Tabbed
 
 -------------------------------------------------------------------------------
 -- Main --
-main :: IO ()
-main = xmonad =<< statusBar cmd pp kb conf
-  where
-    uhook = withUrgencyHookC NoUrgencyHook urgentConfig
-    cmd = "bash -c \"tee >(xmobar -x0) | xmobar -x1\""
-    pp = customPP
-    kb = toggleStrutsKey
-    conf = uhook myConfig
+-- main :: IO ()
+main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
+
+-- Command to launch the bar.
+-- myBar = "xmobar"
+myBar = "bash -c \"tee >(xmobar -x0) | xmobar -x1\""
+
+-- main = xmonad =<< statusBar cmd pp kb conf
+--  where
+--    uhook = withUrgencyHookC NoUrgencyHook urgentConfig
+--    cmd = "bash -c \"tee >(xmobar -x0) | xmobar -x1\""
+--    pp = customPP
+--    kb = toggleStrutsKey
+--    conf = uhook myConfig
 
 -------------------------------------------------------------------------------
 -- Configs --
-myConfig = defaultConfig { workspaces = workspaces'
-                         , modMask = modMask'
-                         , borderWidth = borderWidth'
-                         , normalBorderColor = normalBorderColor'
-                         , focusedBorderColor = focusedBorderColor'
-                         , terminal = terminal'
-                         , keys = keys'
-                         , layoutHook = layoutHook'
-                         , manageHook = manageHook'
-                         }
+myConfig = def { workspaces = workspaces'
+               , modMask = modMask'
+               , borderWidth = borderWidth'
+               , normalBorderColor = normalBorderColor'
+               , focusedBorderColor = focusedBorderColor'
+               , terminal = terminal'
+               , keys = keys'
+               , layoutHook = layoutHook'
+               , manageHook = manageHook'
+               }
 
 -------------------------------------------------------------------------------
 -- Window Management --
@@ -60,29 +66,30 @@ manageHook' = composeAll [ isFullscreen             --> doFullFloat
                          , className =? "mplayer2"  --> doFloat
                          , className =? "Gimp"      --> doFloat
                          , className =? "Vlc"       --> doFloat
-			 , insertPosition Below Newer
-			 , transience'
+                         , insertPosition Below Newer
+                         , transience'
                          ]
 
 
 -------------------------------------------------------------------------------
 -- Looks --
 -- bar
-customPP = defaultPP { ppCurrent = xmobarColor "#429942" "" . wrap "<" ">"
-                     , ppHidden = xmobarColor "#C98F0A" ""
-                     , ppHiddenNoWindows = xmobarColor "#C9A34E" ""
-                     , ppUrgent = xmobarColor "#FFFFAF" "" . wrap "[" "]"
-                     , ppLayout = xmobarColor "#C9A34E" ""
-                     , ppTitle =  xmobarColor "#C9A34E" "" . shorten 80
-                     , ppSep = xmobarColor "#429942" "" " | "
-                     }
+myPP = def { ppCurrent = xmobarColor "#429942" "" . wrap "<" ">"
+           , ppHidden = xmobarColor "#C98F0A" ""
+           , ppHiddenNoWindows = xmobarColor "#C9A34E" ""
+           , ppUrgent = xmobarColor "#FFFFAF" "" . wrap "[" "]"
+           , ppLayout = xmobarColor "#C9A34E" ""
+           , ppTitle =  xmobarColor "#C9A34E" "" . shorten 80
+           , ppSep = xmobarColor "#429942" "" " | "
+           }
+
 -- GridSelect
-myGSConfig = defaultGSConfig { gs_cellwidth = 460
---                             , fontName = "xft:Inconsolata:pixelsize=32"
+myGSConfig = def { gs_cellwidth = 460
+--               , fontName = "xft:Inconsolata:pixelsize=32"
 }
 
 -- urgent notification
-urgentConfig = UrgencyConfig { suppressWhen = Focused, remindWhen = Dont }
+-- urgentConfig = UrgencyConfig { suppressWhen = Focused, remindWhen = Dont }
 
 -- borders
 borderWidth' = 3
@@ -92,13 +99,13 @@ normalBorderColor'  = "#073642"
 focusedBorderColor' = "#dc322f"
 
 -- tabs
-tabTheme1 = defaultTheme { decoHeight = 28
-                         , fontName = "xft:Inconsolata:pixelsize=28"
-                         , activeColor = "#a6c292"
-                         , activeBorderColor = "#a6c292"
-                         , activeTextColor = "#000000"
-                         , inactiveBorderColor = "#000000"
-                         }
+tabTheme1 = def { decoHeight = 28
+                , fontName = "xft:Inconsolata:pixelsize=28"
+                , activeColor = "#a6c292"
+                , activeBorderColor = "#a6c292"
+                , activeTextColor = "#000000"
+                , inactiveBorderColor = "#000000"
+                }
 
 -- workspaces
 workspaces' = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -115,7 +122,6 @@ layoutHook' = tile ||| mtile ||| tab ||| full
 -------------------------------------------------------------------------------
 -- Terminal --
 -- terminal' = "~/bin/urxvt.sh"
--- terminal' = "/usr/bin/xfce4-terminal"
 -- terminal' = "/usr/bin/urxvt"
 -- terminal' = "/usr/bin/lxterminal"
 terminal' = "/usr/bin/xfce4-terminal"
@@ -139,6 +145,18 @@ keys' conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask,               xK_p     ), safeSpawn "dmenu_run" [])
     , ((modMask .|. shiftMask, xK_p     ), safeSpawn "gmrun" [])
     , ((modMask .|. shiftMask, xK_c     ), kill)
+
+    -- multimedia
+    , ((0, xF86XK_AudioRaiseVolume      ), safeSpawn "ponymix" ["increase", "3"])
+    , ((0, xF86XK_AudioLowerVolume      ), safeSpawn "ponymix" ["decrease", "3"])
+    , ((0, xF86XK_AudioMute             ), safeSpawn "ponymix" ["toggle"])
+    , ((0, xF86XK_AudioPlay             ), safeSpawn "mocp" ["-G"])
+    , ((0, xF86XK_AudioNext             ), safeSpawn "mocp" ["-f"])
+    , ((0, xF86XK_AudioPrev             ), safeSpawn "mocp" ["-r"])
+
+    -- alsa main
+    , ((modMask,               xK_Up    ), spawn "amixer -c 1 set Master 1dB+")
+    , ((modMask,               xK_Down  ), spawn "amixer -c 1 set Master 1dB-")
 
     -- audacious
     , ((modMask,               xK_x     ), spawn "audtool playlist-advance")
