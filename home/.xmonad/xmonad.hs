@@ -31,7 +31,7 @@ import XMonad.Layout.Tabbed
 
 -------------------------------------------------------------------------------
 -- Main --
--- main :: IO ()
+main :: IO ()
 main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
 
 -- Command to launch the bar.
