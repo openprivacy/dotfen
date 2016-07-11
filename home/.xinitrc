@@ -27,4 +27,4 @@ xrandr --dpi 106
 
 #eval $(ssh-agent)
 
-exec /usr/bin/xmonad
+exec i3
