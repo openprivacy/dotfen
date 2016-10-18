@@ -24,6 +24,9 @@ if [ -d "$HOME/go/bin" ] ; then
     PATH="$PATH:$HOME/go/bin"
 fi
 
+# Support for LastPass alias 'lclip'.
+[ -x "$HOME/bin/xsecureclip" ] && [ -x "/usr/bin/lpass" ] && export LPASS_CLIPBOARD_COMMAND=xsecureclip
+
 # Set PATH so it includes CUDA bin directory and add to LD_LIBRARY_PATH.
 if [ -d "/usr/local/cuda-7.5/bin" ] ; then
     PATH="$PATH:/usr/local/cuda-7.5/bin"
@@ -53,7 +56,7 @@ gpg-connect-agent updatestartuptty /bye >/dev/null
 [ -f /usr/bin/aws_completer ] && complete -C aws_completer aws
 
 # Load AWS CLI keys
-[ -f $HOME/.aws_keys ] && source $HOME/.aws_keys
+[ -f $HOME/.aws_keys_globalnet ] && source $HOME/.aws_keys_globalnet
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.

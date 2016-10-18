@@ -82,4 +82,7 @@ alias staged='git diff --staged'
 
 # Docker
 alias docker-clean='docker rmi -f $(docker images -q -a -f dangling=true)'
+alias dps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}"'
 
+# LastPass
+alias lclip='lpass show --password --clip'

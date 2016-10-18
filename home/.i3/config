@@ -34,7 +34,7 @@ floating_modifier $mod
 bindsym $mod+Return exec xfce4-terminal
 bindsym $mod+Shift+g exec google-chrome-stable
 bindsym $mod+Shift+f exec firefox
-bindsym $mod+Shift+t exec emacs
+bindsym $mod+Shift+v exec emacs   # Mod-v Mod-V
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -164,6 +164,7 @@ bar {
 
 # https://wiki.archlinux.org/index.php/i3#Shutdown.2C_reboot.2C_lock_screen
 set $Locker i3lock -c 000000 && sleep 1
+# set $Locker /usr/bin/xsecurelock auth_pam_x11 saver_blank
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
@@ -180,3 +181,27 @@ mode "$mode_system" {
 }
 
 bindsym $mod+Pause mode "$mode_system"
+
+# https://faq.i3wm.org/question/3747/enabling-multimedia-keys.1.html
+
+bindsym XF86AudioRaiseVolume exec ponymix increase 3
+bindsym XF86AudioLowerVolume exec ponymix decrease 3
+bindsym XF86AudioMute exec ponymix toggle
+
+bindsym $mod+x exec audtool playlist-advance
+bindsym $mod+z exec audtool playback-pause
+
+# Screen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20
+
+# Screen capture
+bindsym --release Print exec gm import $HOME/Downloads/tmp.png
+
+# exec --no-startup-id dunst
+# exec --no-startup-id xautolock -time 10 -corners -000 -locker '/home/fen/bin/out-lock' -killtime 30 -killer 'systemctl suspend' -notify 30 -notifier "notify-send -- 'Locking screen in 30 seconds'"
+
+exec --no-startup-id xss-lock -- i3lock -n -c 000000
+
+# https://www.reddit.com/r/linuxquestions/comments/3go906/i3wm_unable_to_resize_main_window_in_virtualbox/
+exec --no-startup-id VBoxClient-all
