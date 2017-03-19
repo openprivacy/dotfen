@@ -16,7 +16,7 @@ esac
 [ -d "$HOME/.cabal/bin" ] && PATH="$PATH:$HOME/.cabal/bin"
 
 # Set PATH so it includes user's ruby bin directory.
-[ -d "$HOME/.gem/ruby/2.3.0/bin" ] && PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin"
+[ -x "/usr/bin/ruby" ] && PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
 
 # Set PATH so it includes go global bin directory.
 if [ -d "$HOME/go/bin" ] ; then
