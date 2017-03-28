@@ -84,5 +84,8 @@ alias staged='git diff --staged'
 alias docker-clean='docker rmi -f $(docker images -q -a -f dangling=true)'
 alias dps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}}"'
 
+# Inspec https://github.com/chef/inspec `docker pull chef/inspec`
+alias inspec='docker run -it --rm -v $(pwd):/share chef/inspec'
+
 # LastPass
 alias lclip='lpass show --password --clip'
