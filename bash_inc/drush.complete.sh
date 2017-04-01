@@ -7,9 +7,6 @@
 # examples/example.bashrc instead, as it will automatically find and source
 # this file.
 
-# Ensure drush is available.
-which drush > /dev/null || alias drush &> /dev/null || return
-
 __drush_ps1() {
   f="${TMPDIR:-/tmp/}/drush-env/drush-drupal-site-$$"
   if [ -f $f ]
@@ -19,6 +16,9 @@ __drush_ps1() {
 
   [[ -n "$DRUPAL_SITE" ]] && printf "${1:- (%s)}" "$DRUPAL_SITE"
 }
+
+# Ensure drush is available.
+which drush > /dev/null || alias drush &> /dev/null || return
 
 # Completion function, uses the "drush complete" command to retrieve
 # completions for a specific command line COMP_WORDS.

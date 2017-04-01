@@ -74,6 +74,9 @@
 # do, unless a drush site specification such as @dev or @live:%files
 # is used in one of the arguments.
 
+# Ensure drush is available.
+which drush > /dev/null || alias drush &> /dev/null || return
+
 # Aliases for common drush commands that work in a global context.
 alias dr='drush'
 alias ddd='drush drupal-directory'
