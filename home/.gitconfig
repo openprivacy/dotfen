@@ -1,11 +1,11 @@
 [user]
         name = "Fen Labalme"
         email = fen@civicactions.com
-[credential]
-        helper = cache --timeout=7200
 ##
 ## These are standard CivicActions git settings for developers.
 ##
+[credential]
+        helper = cache --timeout=7200
 [branch]
 	autosetuprebase = always
 [core]
@@ -23,7 +23,7 @@
 [push]
         default = simple
 ##
-## The following configurations can be modified per personal preference.
+## The following configurations are optional; use or modify per personal preference.
 ##
 [color]
         branch = auto
@@ -38,8 +38,8 @@
         abbrevCommit = true
         date = short
         decorate = short
-[format]
-#       pretty = format:%C(auto)%h %Cblue%ad%C(auto)%d %Creset%<(80,trunc)%s <%<(7,trunc)%aN>
+[pretty]
+        myshort = format:"%C(auto)%h %Cblue%ad %Cred<%<(8,trunc)%aN> %Creset%s%C(auto)%d"
 [alias]
         co = checkout
         ci = commit
@@ -47,11 +47,13 @@
         s = status -s
         g = grep -n --color
         d = difftool
+
         # Handy logging aliases; lol is normal; ll is long form; l breaks at 20 lines
-        lol = log --graph --pretty=oneline --abbrev-commit --all
-        ll = log --graph --all --pretty=format:'%C(auto)%h %Cblue%ad %Cred<%<(7,trunc)%aN> %Creset%B%C(auto)%d'
-        l = log --graph --all --pretty=format:'%C(auto)%h %Cblue%ad %Cred<%<(7,trunc)%aN> %Creset%s%C(auto)%d' -n 20
-        graphlog = log --oneline --graph --branches
+        lol = log --graph --all --oneline --all
+        ll = log --graph --all --pretty=myshort
+        l = log --graph --all --pretty=myshort -n 20
+        graphlog = log --graph --all --oneline --branches
+
         # Show verbose output about tags, branches or remotes
         tags = tag -l
         branches = branch -a
