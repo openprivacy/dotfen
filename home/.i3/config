@@ -32,7 +32,8 @@ floating_modifier $mod
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec xfce4-terminal
-bindsym $mod+Shift+g exec google-chrome-stable
+# bindsym $mod+Shift+g exec google-chrome-stable
+bindsym $mod+Shift+g exec chromium
 bindsym $mod+Shift+f exec firefox
 bindsym $mod+Shift+v exec emacs   # Mod-v Mod-V
 
@@ -120,6 +121,10 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+# Move workspaces between monitors
+bindsym $mod+n move workspace to output left
+bindsym $mod+m move workspace to output right
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -196,12 +201,13 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 20
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20
 
 # Screen capture
-bindsym --release Print exec gm import $HOME/Downloads/tmp.png
+bindsym --release Print exec gm import "$HOME/Downloads/tmp.png" && xclip -selection clipboard -t image/png -i "$HOME/Downloads/tmp.png"
 
 # exec --no-startup-id dunst
 # exec --no-startup-id xautolock -time 10 -corners -000 -locker '/home/fen/bin/out-lock' -killtime 30 -killer 'systemctl suspend' -notify 30 -notifier "notify-send -- 'Locking screen in 30 seconds'"
 
-exec --no-startup-id xss-lock -- /home/fen/bin/out-lock
+# exec --no-startup-id xss-lock -- i3lock -n -c 000000
+exec --no-startup-id xss-lock -- $HOME/bin/out-lock
 
 # https://www.reddit.com/r/linuxquestions/comments/3go906/i3wm_unable_to_resize_main_window_in_virtualbox/
 exec --no-startup-id VBoxClient-all
