@@ -87,5 +87,8 @@ alias dps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}
 # Inspec https://github.com/chef/inspec `docker pull chef/inspec`
 alias inspec='docker run -it --rm -v $(pwd):/share chef/inspec'
 
+# OpenControl compliance-masonry `docker pull opencontrolorg/compliance-masonry`
+alias compliance-masonry='docker run -it --rm -v $(pwd):/opencontrol opencontrolorg/compliance-masonry'
+
 # LastPass
 alias lclip='lpass show --password --clip'
