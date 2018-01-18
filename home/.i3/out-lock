@@ -1,0 +1,11 @@
+#!/bin/sh
+# A screen lock wrapper that does nothing (exits) if on home network.
+# Put this in the executable path, e.g. `ln -s ~/.i3/out-lock ~/bin`
+
+# If on a my home network (with a known local router) then exit.
+# (Adjust this to some reliable/secure test for your home network.)
+$( arp 192.168.0.1 | grep f4:f2:6d:b3:02:e2 &> /dev/null ) && exit 1
+$( arp 192.168.1.1 | grep 48:5d:36:4c:d5:51 &> /dev/null ) && exit 1
+
+# If away from home and not already locked, lock the screen.
+$( pidof i3lock > /dev/null ) || /usr/bin/i3lock -n -c 000000
