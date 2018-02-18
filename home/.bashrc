@@ -55,6 +55,9 @@ export GPG_TTY=$(tty)
 # Enable AWS command line completion.
 [ -f /usr/bin/aws_completer ] && complete -C aws_completer aws
 
+# Enable kubernetes command line completion.
+$(hash kubectl &> /dev/null) && source <(kubectl completion bash)
+
 # Load AWS CLI keys
 [ -f $HOME/.aws_keys_globalnet ] && source $HOME/.aws_keys_globalnet
 
