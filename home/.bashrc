@@ -12,6 +12,9 @@ esac
 # Set PATH so it includes composers global bin directory.
 [ -d "$HOME/.composer/vendor/bin" ] && PATH="$PATH:$HOME/.composer/vendor/bin"
 
+# Set PATH so it includes Pantheon Terminus bin directory.
+[ -d "$HOME/src/terminus/vendor/bin" ] && PATH="$PATH:$HOME/src/terminus/vendor/bin"
+
 # Set PATH so it includes cabal global bin directory.
 [ -d "$HOME/.cabal/bin" ] && PATH="$PATH:$HOME/.cabal/bin"
 
