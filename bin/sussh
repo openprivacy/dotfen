@@ -1,0 +1,21 @@
+#!/usr/bin/expect
+set timeout 5
+set lpass [lindex $argv 0]
+set arguments [lrange $argv 1 end]
+if {$lpass eq "" || $arguments eq ""} {
+  puts "sussh: Login to interactive root shell using sudo password from lpass."
+  puts "The credential is sent via expect, not via any command line option.\n"
+  puts "Usage: sussh <lpass-key> <ssh-args ...>"
+  puts "  lpass-key: Suffix of a lpass record with the prefix 'ssh-'"
+  puts "  ssh-args: username, hostname, port, alias or other ssh options\n"
+  puts "Example: 'sussh client me@client.com'"
+  puts "ssh to me@client.com and use the 'ssh-client' lpass record to sudo."
+  exit
+}
+set credential [exec lpass show --password ssh-$lpass]
+spawn ssh {*}$arguments
+expect "]$ "
+send "sudo -s\n"
+expect "assword"
+send "$credential\n"
+interact

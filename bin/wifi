@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+sudo systemctl stop dhcpcd.service
+sudo wifi-menu

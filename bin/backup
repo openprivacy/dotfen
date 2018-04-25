@@ -1,0 +1,4 @@
+#!/bin/bash
+
+rsync -av --delete --exclude=.cache --exclude=cache --exclude=nobackup /home/fen/ cycles:/backup/truckin/fen
+sudo rsync -av --delete /etc/ cycles:/backup/truckin/etc

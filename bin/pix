@@ -1,0 +1,2 @@
+#!/bin/sh
+feh -rz --randomize --bg-max /home/fen/Pictures/201*
