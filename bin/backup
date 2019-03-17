@@ -1,4 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-rsync -av --delete --exclude=.cache --exclude=cache --exclude=nobackup /home/fen/ cycles:/backup/truckin/fen
-sudo rsync -av --delete /etc/ cycles:/backup/truckin/etc
+rsync -av \
+      --exclude=.cache --exclude=cache --exclude=Pictures --exclude=Music \
+      --exclude=VMs --exclude='VirtualBox VMs' --exclude=.VirtualBox \
+      /home/fen/ cycles:/backup/truckin/fen
+
+rsync -av /home/fen/Pictures/ cycles:/media/Pictures/
+
+rsync -av /home/fen/Music/fen/ cycles:/music/fen/
+
+# sudo rsync -av --delete /etc/ cycles:/backup/truckin/etc

@@ -2,3 +2,5 @@
 
 sudo systemctl stop dhcpcd.service
 sudo wifi-menu
+
+echo "If fail: 'sudo ifconfig wlp4s0 down'"
