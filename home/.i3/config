@@ -204,6 +204,8 @@ bindsym $mod+z exec audtool playback-pause
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20
+bindsym XF86MonBrightnessUp+Shift exec xbacklight -display 1 -inc 20
+bindsym XF86MonBrightnessDown+Shift exec xbacklight -display 1 -dec 20
 
 # Screen capture
 bindsym --release Print exec gm import "$HOME/Downloads/tmp.png" && xclip -selection clipboard -t image/png -i "$HOME/Downloads/tmp.png"
