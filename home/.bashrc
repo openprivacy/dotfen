@@ -51,6 +51,12 @@ export GPG_TTY=$(tty)
 # Refresh gpg-agent tty in case user switches into an X session
 [ -x /usr/bin/gpg-connect-agent ] && gpg-connect-agent updatestartuptty /bye >/dev/null
 
+# Enable LESS syntax highlighting
+if [ -x /usr/bin/src-hilite-lesspipe.sh ]; then
+  export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
+  export LESS=' -R '
+fi
+
 # Enable git command line completion.
 [ -f /usr/share/git/completion/git-completion.bash ] && \
   source /usr/share/git/completion/git-completion.bash

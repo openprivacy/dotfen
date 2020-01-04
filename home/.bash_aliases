@@ -52,8 +52,9 @@ alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 # Enable aliases to be sudo-ed
 alias sudo='sudo '
 
-# View HTTP traffic
+# View HTTP traffic and internet fires
 alias sniff="sudo ngrep -d 'wlan0' -t '^(GET|POST) ' 'tcp and port 80'"
+alias istheinternetonfire='dig +short txt istheinternetonfire.com'
 
 # Solr server access - then http://localhost:8983/solr/#/
 alias solr_connect='ssh gn2-solr -f -L 8983:localhost:8983 -N'
@@ -86,9 +87,6 @@ alias dps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Names}}\t{{.Status}
 
 # Inspec https://github.com/chef/inspec `docker pull chef/inspec`
 alias inspec='docker run -it --rm -v $(pwd):/share chef/inspec'
-
-# OpenControl compliance-masonry `docker pull opencontrolorg/compliance-masonry`
-alias compliance-masonry='docker run -it --rm -v $(pwd):/opencontrol opencontrolorg/compliance-masonry'
 
 # LastPass
 alias lclip='lpass show --password --clip'

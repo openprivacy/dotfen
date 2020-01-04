@@ -9,7 +9,7 @@
 date >> ~/boot.log
 xsetroot -cursor_name left_ptr
 
-xrandr --dpi 106
+# xrandr --dpi 106
 
 # dunst &
 

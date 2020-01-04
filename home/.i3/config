@@ -216,3 +216,9 @@ exec --no-startup-id xss-lock -- $HOME/bin/out-lock
 
 # https://www.reddit.com/r/linuxquestions/comments/3go906/i3wm_unable_to_resize_main_window_in_virtualbox/
 exec --no-startup-id VBoxClient-all
+
+# https://wiki.archlinux.org/index.php/Redshift#Configuration
+exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
+
+# run redshift
+exec redshift -l 40.37:-80.04
