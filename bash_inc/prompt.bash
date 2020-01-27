@@ -37,6 +37,12 @@ function prompt() {
     local user_ssh=''
   fi
 
+  if test -z "$VIRTUAL_ENV" ; then
+    PYTHON_VIRTUALENV=""
+  else
+    PYTHON_VIRTUALENV="(`basename \"$VIRTUAL_ENV\"`) "
+  fi
+
   # FIXME: root user complains that there is no such function __drush_ps1
   if [ "\$(type -t __drush_ps1)" ]; then
     _DRUSH_PS1=$(__drush_ps1 "(%s) ")
@@ -44,7 +50,7 @@ function prompt() {
     _DRUSH_PS1=''
   fi
 
-  PS1="${TITLEBAR}\n$(scm_char) ${user_ssh}[$user_color\u$reset_color@$green\H$reset_color] $yellow\w${reset_color}$git_prompt\n$green${_DRUSH_PS1}$prompt_char$reset_color"
+  PS1="${TITLEBAR}\n$(scm_char) ${user_ssh}[$user_color\u$reset_color@$green\H$reset_color] $yellow\w${reset_color}$git_prompt\n$green${PYTHON_VIRTUALENV}${_DRUSH_PS1}$prompt_char$reset_color"
   PS2='> '
   PS4='+ '
 }
