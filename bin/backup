@@ -1,12 +1,25 @@
 #!/usr/bin/env bash
 
-rsync -av \
-      --exclude=.cache --exclude=cache --exclude=Pictures --exclude=Music \
-      --exclude=VMs --exclude='VirtualBox VMs' --exclude=.VirtualBox \
-      /home/fen/ cycles:/backup/truckin/fen
+# Depends on:
+#   RESTIC_REPOSITORY='sftp:fen@cycles:/backup/restic-repo'
+#   RESTIC_PASSWORD_FILE='/home/fen/.config/resticpw'
 
+# init
+# restic init
+
+# Encrypted versioned backup
+restic backup /home/fen --exclude=.cache --exclude=cache \
+       --exclude=Pictures --exclude=Music --exclude=Video \
+       --exclude=VMs --exclude='VirtualBox VMs' --exclude=.VirtualBox
+
+echo "Syncing Pictures..."
 rsync -av /home/fen/Pictures/ cycles:/media/Pictures/
 
-rsync -av /home/fen/Music/fen/ cycles:/music/fen/
+# rsync -av \
+#       --exclude=.cache --exclude=cache --exclude=Pictures --exclude=Music \
+#       --exclude=VMs --exclude='VirtualBox VMs' --exclude=.VirtualBox \
+#       /home/fen/ cycles:/backup/truckin/fen
+
+# rsync -av /home/fen/Music/fen/ cycles:/music/fen/
 
 # sudo rsync -av --delete /etc/ cycles:/backup/truckin/etc

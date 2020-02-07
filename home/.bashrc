@@ -74,6 +74,12 @@ $(hash kubectl &> /dev/null) && source <(kubectl completion bash)
 # Load AWS CLI keys
 [ -f $HOME/.aws_keys_globalnet ] && source $HOME/.aws_keys_globalnet
 
+# Set restic repository for backups
+if type "restic" &> /dev/null; then
+  export RESTIC_REPOSITORY='sftp:fen@cycles:/backup/restic-repo'
+  export RESTIC_PASSWORD_FILE='/home/fen/.config/resticpw'
+fi
+
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar
