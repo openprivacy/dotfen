@@ -1,60 +1,44 @@
 [user]
-        name = "Fen Labalme"
-        email = fen@civicactions.com
+  name = "Fen Labalme"
+  email = fen@civicactions.com
 ##
 ## These are standard CivicActions git settings for developers.
 ##
-[credential]
-        helper = cache --timeout=7200
-[branch]
-	autosetuprebase = always
 [core]
-        # Treat spaces before tabs, lines that are indented with 8 or more spaces,
-        # and all kinds of trailing whitespace as an error
-        whitespace = space-before-tab,indent-with-non-tab,trailing-space
-        excludesfile = ~/.gitignore_global
-        autocrlf = input
+  # This is for MacOS or Linux. For Windows set to `true`.
+  autocrlf = input
 [merge]
-        # Include summaries of merged commits in newly created merge commit messages
-        log = true
-        ff = only
+  ff = only
 [pull]
-        ff = only
-[push]
-        default = simple
+  ff = only
 ##
 ## The following configurations are optional; use or modify per personal preference.
 ##
-[color]
-        branch = auto
-        diff = auto
-        interactive = auto
-        status = auto
 [diff]
-        tool = meld
+  tool = meld
 [difftool]
-        prompt = false
+  prompt = false
 [log]
-        abbrevCommit = true
-        date = short
-        decorate = short
+  abbrevCommit = true
+  date = short
+  decorate = short
 [pretty]
-        myshort = format:"%C(auto)%h %Cblue%ad %Cred<%<(8,trunc)%aN> %Creset%s%C(auto)%d"
+  myshort = format:"%C(auto)%h %Cblue%ad %Cred<%<(8,trunc)%aN> %Creset%s%C(auto)%d"
 [alias]
-        co = checkout
-        ci = commit
-        st = status
-        s = status -s
-        g = grep -n --color
-        d = difftool
+  co = checkout
+  ci = commit
+  st = status
+  s = status -s
+  g = grep -n --color
+  d = difftool
 
-        # Handy logging aliases; lol is normal; ll is long form; l breaks at 20 lines
-        lol = log --graph --all --oneline --all
-        ll = log --graph --all --pretty=myshort
-        l = log --graph --all --pretty=myshort -n 20
-        graphlog = log --graph --all --oneline --branches
+  # Handy logging aliases; lol is normal; ll is long form; l breaks at 20 lines
+  lol = log --graph --all --oneline --all
+  ll = log --graph --all --pretty=myshort
+  l = log --graph --all --pretty=myshort -n 20
+  graphlog = log --graph --all --oneline --branches
 
-        # Show verbose output about tags, branches or remotes
-        tags = tag -l
-        branches = branch -a
-        remotes = remote -v
+  # Show verbose output about tags, branches or remotes
+  tags = tag -l
+  branches = branch -a
+  remotes = remote -v

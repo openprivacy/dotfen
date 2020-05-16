@@ -162,3 +162,11 @@ if [ ! -f $HOME/.bash_inc/prompt.bash ]; then
       ;;
   esac
 fi
+
+# https://virtualenvwrapper.readthedocs.io/en/latest/
+# defines mkvirtualenv, workon, deactivate
+if [ -f /usr/bin/virtualenvwrapper.sh ]; then
+  export WORKON_HOME=~/venvs/
+  export PROJECT_HOME=$HOME/workspace
+  source /usr/bin/virtualenvwrapper.sh
+fi
