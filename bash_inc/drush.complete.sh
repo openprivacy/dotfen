@@ -18,7 +18,7 @@ __drush_ps1() {
 }
 
 # Ensure drush is available.
-which drush > /dev/null || alias drush &> /dev/null || return
+[[ -x drush ]] || return
 
 # Completion function, uses the "drush complete" command to retrieve
 # completions for a specific command line COMP_WORDS.
