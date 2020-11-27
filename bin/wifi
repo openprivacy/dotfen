@@ -3,4 +3,28 @@
 sudo systemctl stop dhcpcd.service
 sudo wifi-menu
 
-echo "If fail: 'sudo ifconfig wlp4s0 down'"
+echo "If fail: sudo ifconfig wlp4s0 down"
+
+echo ""
+echo "if 'Operation not possible due to RF-Kill':"
+echo ""
+echo "sudo rfkill list all"
+echo "sudo rfkill unblock wifi"
+echo "sudo rfkill unblock all"
+echo "wifi"
+
+# from https://unix.stackexchange.com/questions/428277/wifi-not-working-with-arch-linux
+
+echo ""
+echo "Other useful commands:"
+echo ""
+echo "Find interface: ip link"
+echo "Find interface: iwconfig"
+echo "Interface up:   ip link set wlp4s0 up"
+echo "Interface scan: iwlist wlp4s0 scan"
+echo "Interface down: ip link set wlp4s0 down"
+echo "List wifi conf: netctl list"
+echo "wifi start:     netctl start wlp4s0-OpenPrivacy"
+echo "If error:       ip link set dev wlp4s0 down"
+echo "Try again:      netctl enable wlp4s0-OpenPrivacy"
+echo "Maybe try:      wpa_supplicant"
