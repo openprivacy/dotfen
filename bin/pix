@@ -1,2 +1,3 @@
 #!/bin/sh
-feh -rz --randomize --bg-max /home/fen/Pictures/201*
+# args: recursive, randomize, background-zoom, auto-rotate
+feh -rz --bg-max --auto-rotate --no-fehbg /home/fen/Pictures/Backgrounds

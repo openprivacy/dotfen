@@ -119,9 +119,12 @@ fi
 
 # For this to work, first create a symlink, for example:
 # ln -s ~/.homesick/repos/dotfen/bash_inc ~/.bash_inc
-for incl in $HOME/.bash_inc/*.bash $HOME/.bash_inc/*.sh
-  do . $incl
-done
+if [ -z ${INSIDE_EMACS+x} ]; then
+  for incl in $HOME/.bash_inc/*.bash $HOME/.bash_inc/*.sh
+  do
+    . $incl
+  done
+fi
 
 # Set up a basic color prompt if no local prompt setting available
 if [ ! -f $HOME/.bash_inc/prompt.bash ]; then
