@@ -125,9 +125,8 @@ fi
 # ln -s ~/.homesick/repos/dotfen/bash_inc ~/.bash_inc
 for incl in $HOME/.bash_inc/*.bash $HOME/.bash_inc/*.sh
   do
-    . $incl
+    source $incl
   done
-fi
 
 # Set up a basic color prompt if no local prompt setting available
 if [ ! -f $HOME/.bash_inc/prompt.bash ]; then
