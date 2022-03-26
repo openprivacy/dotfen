@@ -41,22 +41,6 @@ fi
 export PATH
 export EDITOR=vi
 
-# Set SSH to use gpg-agent (https://wiki.archlinux.org/index.php/GnuPG#gpg-agent)
-unset SSH_AGENT_PID
-if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
-fi
-# Set GPG TTY
-export GPG_TTY=$(tty)
-# Refresh gpg-agent tty in case user switches into an X session
-[ -x /usr/bin/gpg-connect-agent ] && gpg-connect-agent updatestartuptty /bye >/dev/null
-
-# Enable LESS syntax highlighting
-if [ -x /usr/bin/src-hilite-lesspipe.sh ]; then
-  export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
-  export LESS=' -R '
-fi
-
 # Enable git command line completion.
 [ -f /usr/share/git/completion/git-completion.bash ] && \
   source /usr/share/git/completion/git-completion.bash
@@ -84,14 +68,11 @@ fi
 # match all files and zero or more directories and subdirectories.
 #shopt -s globstar
 
-# Make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe.sh ] && export LESSOPEN="|lesspipe.sh %s"
-
-# Xmonad fix for LibreOffice dialog issues when not using gwd
-export SAL_USE_VCLPLUGIN="gen lowriter"
-
 # Alias definitions.
 [ -f $HOME/.bash_aliases ] && source $HOME/.bash_aliases
+
+# If inside emacs, quite here
+[ ${INSIDE_EMACS+x} ] && return
 
 # A sensible bash environment from https://github.com/mrzool/bash-sensible
 if [ -f "$HOME/.homesick/repos/bash-sensible/sensible.bash" ]; then
@@ -117,10 +98,32 @@ else
   shopt -s cdspell
 fi
 
+## Manage SSH_AGENT and LESS
+
+# Set SSH to use gpg-agent (https://wiki.archlinux.org/index.php/GnuPG#gpg-agent)
+unset SSH_AGENT_PID
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+  export SSH_AUTH_SOCK="/run/user/$UID/gnupg/S.gpg-agent.ssh"
+fi
+# Set GPG TTY
+export GPG_TTY=$(tty)
+# Refresh gpg-agent tty in case user switches into an X session
+[ -x /usr/bin/gpg-connect-agent ] && gpg-connect-agent updatestartuptty /bye >/dev/null
+
+# Enable LESS syntax highlighting
+if [ -x /usr/bin/src-hilite-lesspipe.sh ]; then
+  export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
+  export LESS=' -R '
+fi
+
+# Make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe.sh ] && export LESSOPEN="|lesspipe.sh %s"
+
+## prompt management follows
+
 # For this to work, first create a symlink, for example:
 # ln -s ~/.homesick/repos/dotfen/bash_inc ~/.bash_inc
-if [ -z ${INSIDE_EMACS+x} ]; then
-  for incl in $HOME/.bash_inc/*.bash $HOME/.bash_inc/*.sh
+for incl in $HOME/.bash_inc/*.bash $HOME/.bash_inc/*.sh
   do
     . $incl
   done
@@ -168,8 +171,8 @@ fi
 
 # https://virtualenvwrapper.readthedocs.io/en/latest/
 # defines mkvirtualenv, workon, deactivate
-if [ -f /usr/bin/virtualenvwrapper.sh ]; then
-  export WORKON_HOME=~/venvs/
-  export PROJECT_HOME=$HOME/workspace
-  source /usr/bin/virtualenvwrapper.sh
-fi
+# if [ -f /usr/bin/virtualenvwrapper.sh ]; then
+#   export WORKON_HOME=~/venvs/
+#   export PROJECT_HOME=$HOME/workspace
+#   source /usr/bin/virtualenvwrapper.sh
+# fi

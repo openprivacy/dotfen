@@ -3,7 +3,7 @@
 
 # If on a my home network (with a known local router) then exit.
 # (Adjust this to some reliable/secure test for your home network.)
-$( arp 192.168.1.1 | grep 48:5d:36:4c:d5:51 &> /dev/null ) && exit 1
+$( arp 192.168.1.1 | grep 18:78:d4:37:7d:69 &> /dev/null ) && exit 1
 
 # If away from home and not already locked, lock the screen.
 $( pidof i3lock > /dev/null ) || /usr/bin/i3lock -n -c 000000
